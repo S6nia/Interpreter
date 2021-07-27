@@ -15,12 +15,24 @@
 
 def main():
 
-    expression = input(">>> ")
-    #print(expression)
+    print("Enter 'Q' to quit.")
+    userInput = input(">>> ")
+        
+    sign = 'Q'
+    while  sign.upper() != 'Q'
+        userInput = input(">>> ")
 
-    tokens = tokenize(expression)
+    
+    tokens = tokenize(userInput)
 
     parse(tokens)
+
+
+def tokenize(userInput):
+
+
+
+def parse(tokens):
     
 
 main()
