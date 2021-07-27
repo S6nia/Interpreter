@@ -12,20 +12,23 @@
 # Node class
 # Test files
 
+# Comments, docstring
+# Validations and error handling
+
 
 def main():
 
     print("Calculator\nEnter the key 'Q' to exit the program.")
     userInput = input(">>> ")
-    while userInput != 'Q':
+    
+    while userInput.upper() != 'Q':
             
         tokens = tokenize(userInput)
         
         addition = 0
-        #for i in range(len(tokens)):
         if tokens[0] == '+':
-            for j in range (1, len(tokens)):
-                addition += int(tokens[j])
+            for i in range (1, len(tokens)):
+                addition += int(tokens[i])
         else:
             print("Other operators are still not defined!")
 
@@ -35,6 +38,8 @@ def main():
 
         #parse(tokens)
 
+    print("The program has exited.")
+    
 
 # What this function does (remember, not how it does!)
 def tokenize(userInput):
@@ -70,3 +75,4 @@ def tokenize(userInput):
     
 
 main()
+
