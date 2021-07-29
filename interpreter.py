@@ -42,7 +42,7 @@ def main():
 
             print(addition)
         else:
-            print("Something went wrong!")
+            print("Please try again.")
 
         userInput = input(">>> ")
 
@@ -68,16 +68,22 @@ def tokenize(userInput):
     tokens = []
     charList = userInput.split()
 
-    # I think it's a good idea to comment every substancial block of code.
-    pos = 0
-    while pos < len(charList):
-        if charList[pos] == '+':
-            tokens.append(charList[pos])
-        elif charList[pos].isdigit():
-            tokens.append(charList[pos])
-        else:
-            print("Unexpected token!") 
-        pos += 1
+    # Checks the format of the operation - has to take an operator and minimum two arguments
+    if len(charList) >= 3:
+
+        # Creats the list of tokens.
+        pos = 0
+        while pos < len(charList):
+            if charList[pos] == '+':
+                tokens.append(charList[pos])
+            else:
+                charList[pos].isdigit()
+                tokens.append(charList[pos])
+            pos += 1
+
+    else:
+        print("Expected format: op arg1 arg2...arg(n). Please use white spaces between the units.")
+        
 
     return tokens
 
