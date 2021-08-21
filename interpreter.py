@@ -4,14 +4,17 @@
 # This is an interpreter.
 # This is the main file of this program.
 
+# Main
+# Token class
 # Tokenizer
+# Node class
 # Parser
 # Evaluator
-# Node class
-# Test files
+# Test files for each 
 
-# Comments, docstring
+# Documentation: Comments, docstring
 # Validations and error handling
+# Testing
 
 
 def main():
