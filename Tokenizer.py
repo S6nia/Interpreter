@@ -7,6 +7,7 @@ import token
 class Tokenizer:
     '''A tokenizer.'''
 
+    # Constructor of the class.
     def __init__(self, userInput):
         '''(Tokenizer, str) -> NoneType'''
 
@@ -16,6 +17,7 @@ class Tokenizer:
         self._output = [] # stream of lexemes/tokens (list)
 
 
+    # String representation of the class.
     def __str__(self):
         '''(Tokenizer) -> str
 
@@ -28,7 +30,9 @@ class Tokenizer:
         
         return '(' + self._input + ') -> Tokenizer -> ' + self._output
     
-    
+
+    # Helper method that increments the position,
+    # and assign the next char to the current one.
     def advanceOnePosition(self):
         '''(Tokenizer) -> NoneType '''
 
@@ -36,8 +40,9 @@ class Tokenizer:
         self._current_char = self._input[self._pos]
 
 
-    # How to write test examples?
-    def isMultidigit(self):
+    # Helper method that checks if the current integer is multidigit.
+    # How to write test examples for this case, w/out 
+    def getMultidigitInteger(self):
         '''(Tokenizer) -> int
 
         Return a multidigit integer (lexeme). 
@@ -52,9 +57,10 @@ class Tokenizer:
         return result
 
 
-    # refactor!
+    # This method cleans the input from whitespaces, checks the expected chars,
+    # and then creates tokens.
     def prepareDataFromInput(self):
-        '''(Tokenizer) -> Token'''
+        '''(Tokenizer) -> NoneType'''
 
         while self._pos < len(self._input):
 
@@ -86,6 +92,7 @@ class Tokenizer:
         # parser verifica de certo modo a ordem dos tokens, eu penso! :)
 
 
+    # This method gets the list of tokens and returns it.
     def getListOfTokens(self):
         '''(Tokenizer) -> list of Tokens
 
