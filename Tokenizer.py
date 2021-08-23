@@ -8,7 +8,8 @@
 # This module defines the Tokenizer class.
 #
 
-import token
+#import token
+from token import Token
 
 class Tokenizer:
     '''A tokenizer.'''
@@ -68,23 +69,23 @@ class Tokenizer:
             
             else:
 
-                if self._current_char == '+':
+                if self._currentChar == '+':
                     tk = token.Token(PLUS, '+', self._pos)
                     self._output.append(tk)
                 
-                elif self._current_char == '-':
+                elif self._currentChar == '-':
                     tk = token.Token(MINUS, '-', self._pos)
                     self._output.append(tk)
 
-                elif self._current_char == '*':
+                elif self._currentChar == '*':
                     tk = token.Token(MULT, '*', self._pos)
                     self._output.append(tk)
 
-                elif self._current_char == '/':
+                elif self._currentChar == '/':
                     tk = token.Token(DIV, '/', self._pos)
                     self._output.append(tk)
 
-                elif self._current_char.isdigit():
+                elif self._currentChar.isdigit():
                     tk = token.Token(INT, self.getMultidigitInteger(), self._pos)
                     self._output.append(tk) # need to come up with a better name...
 
