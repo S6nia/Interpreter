@@ -8,8 +8,8 @@
 # This module defines the Tokenizer class.
 #
 
-#import token
-from token import Token
+import token
+#from token import Token
 
 class Tokenizer:
     '''A tokenizer.'''
