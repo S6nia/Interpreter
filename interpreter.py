@@ -1,28 +1,36 @@
-# Sonia da Trindade
-# 19 08 21
+# Name: Sonia Gonçalves
+# Program: IT MSc
+# ST ID: 
+# Date: 19 08 21
 
-# This is an interpreter. Name: Abacus :)
-# This is the main file of this program.
 
+# Code * Create * Write
+#   
 # Main
-# Token class
+# Token
 # Tokenizer
-# Node class
+# Node
 # Parser
 # Evaluator
-# Test files for each 
-
+#
 # Documentation: Comments, docstring, preconditions
-# Validations and error handling
+# Validations, and error handling
 # Testing (doctest, unittest, assertions)
 
 
+##
+# This module defines the main function of the program: Interpreter Abacus :)
+#
+
 import tokenizer
-import parser
-import evaluator
+# TBD:
+#import parser   
+#import evaluator
 
 def main():
     '''
+    >>> 1
+    1
     >>> + 1 2
     3
     >>> + 10 20
@@ -37,8 +45,8 @@ def main():
     while userInput.upper() != 'Q':
             
         tk = tokenizer.Tokenizer(userInput)
-        tokens = tk.getTokens()
-        psr = parser.Parser(tokens) # remember song example
+        tokens = tk.getListOfTokens()
+        psr = parser.Parser(tokens)
         expression = psr.getExpression()
         eva = evaluator.Evaluator(expression)
         result = eva.getResult()
