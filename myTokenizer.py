@@ -117,19 +117,15 @@ if __name__ == '__main__':
     tkz = MyTokenizer('+ 1 2 3')
     
     print(tkz)
-    #print(tkz._currentChar)
-    #print(tkz._pos)
     print()
     
     tokens = tkz.getListOfTokens()
-    #print(tokens[0])
-    #print(list((tokens[0].getValue(), tokens[1].getValue(), tokens[2].getValue())))
 
     for tk in tokens:
         print(tk)
-        print(tk._type)
-        print(tk._value)
-        print(tk._index)
+        print(tk.getType())
+        print(tk.getValue())
+        print(tk.getIndex())
         print()
 
     print(tkz)
