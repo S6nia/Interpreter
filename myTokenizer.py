@@ -35,8 +35,12 @@ class MyTokenizer:
         >>> print(tkz)
         '(+ 1 2) -> Tokenizer -> ['+', '1', '2']'
         '''
+
+        lst = []
+        for tk in self._output:
+            lst.append(tk.getValue())
         
-        return '(' + self._input + ') -> Tokenizer -> ' + str(self._output)
+        return '(' + self._input + ') -> Tokenizer -> ' + str(lst)
 
     
     def _prepareDataFromInput(self):
@@ -83,7 +87,8 @@ class MyTokenizer:
 
         >>> tkz = Tokenizer('+ 1 2')
         >>> tokens = tkz.getListOfTokens()
-        >>> print(tokens)
+        >>> ... ... ... ... ... ... ... ...
+        >>> print(list((tokens[0].getValue()), tokens[1].getValue()), tokens[2].getValue())))
         ['+', '1', '2']
         '''
 
@@ -97,7 +102,8 @@ if __name__ == '__main__':
     #import doctest
     #doctest.testmod()
 
-    tkz = MyTokenizer('+ 1 2')
+    # Creating some examples
+    #tkz = MyTokenizer('+ 1 2')
     #tkz = MyTokenizer('+ 1  2')
     #tkz = MyTokenizer(' + 1 2')
     #tkz = MyTokenizer('+ 1 2 ')
@@ -108,14 +114,23 @@ if __name__ == '__main__':
     #tkz = MyTokenizer('- 1 2')
     #tkz = MyTokenizer('* 1 2')
     #tkz = MyTokenizer('/ 1 2')
+    tkz = MyTokenizer('+ 1 2 3')
     
     print(tkz)
-    print(tkz._pos)
-    print(tkz._currentChar)
+    #print(tkz._currentChar)
+    #print(tkz._pos)
+    print()
+    
     tokens = tkz.getListOfTokens()
+    #print(tokens[0])
+    #print(list((tokens[0].getValue(), tokens[1].getValue(), tokens[2].getValue())))
 
-    for i in tokens:
-        print(i)
+    for tk in tokens:
+        print(tk)
+        print(tk._type)
+        print(tk._value)
+        print(tk._index)
+        print()
 
     print(tkz)
 
