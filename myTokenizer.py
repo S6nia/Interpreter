@@ -8,18 +8,17 @@
 # This module defines the Tokenizer class.
 #
 
-#import token
-#from token import Token
-#from Interpreter import token
-#from Interpretor.token import Token
-import Interpreter.token
+from myToken import MyToken
 
+INT, PLUS, MINUS, MULT, DIV, LPAREN, RPARENT = (
+    'INT', 'PLUS', 'MINUS', 'MULT', 'DIV', 'LPAREN', 'RPARENT'
+)
 
-class Tokenizer:
+class MyTokenizer:
     '''A tokenizer.'''
 
     def __init__(self, userInput):
-        '''(Tokenizer, str) -> NoneType'''
+        '''(MyTokenizer, str) -> NoneType'''
 
         self._input = userInput # stream of chars (str)
         self._pos = 0
@@ -28,76 +27,53 @@ class Tokenizer:
 
 
     def __str__(self):
-        '''(Tokenizer) -> str
+        '''(MyTokenizer) -> str
 
         Return a string representation of the tokenizer.
 
-        >>> tkz = Tokenizer('+ 1 2')
+        >>> tkz = MyTokenizer('+ 1 2')
         >>> print(tkz)
         '(+ 1 2) -> Tokenizer -> ['+', '1', '2']'
         '''
         
-        return '(' + self._input + ') -> Tokenizer -> ' + self._output
-
-    # Since these methods are helper methods, they should be private, hence the underscore convention.
-    def _advanceByOne(self):
-        '''(Tokenizer) -> NoneType'''
-
-        self._pos += 1
-        self._currentChar = self._input[self._pos]
-    
-
-    def _getMultidigitInteger(self):
-        '''(Tokenizer) -> int
-
-        Return a multidigit integer (lexeme). 
-        '''
-        
-        result = ''
-
-        while self._currentChar.isdigit():
-            result += self._currentChar
-            self.advanceByOne()
-            
-        return result
+        return '(' + self._input + ') -> Tokenizer -> ' + str(self._output)
 
     
     def _prepareDataFromInput(self):
         '''(Tokenizer) -> NoneType'''
 
-        while self._pos < len(self._input):
+        for self._pos in range(len(self._input)):
+
+            self._currentChar = self._input[self._pos]
 
             if self._currentChar.isspace():
-                self.advanceByOne()
-                continue # this statement returns the control to the beginning of the while loop :) 
-            
+               continue # this statement returns the control to the beginning of the while loop :) 
+
             else:
 
                 if self._currentChar == '+':
-                    tk = token.Token(PLUS, '+', self._pos)
+                    tk = MyToken(PLUS, '+', self._pos)
                     self._output.append(tk)
                 
                 elif self._currentChar == '-':
-                    tk = token.Token(MINUS, '-', self._pos)
+                    tk = MyToken(MINUS, '-', self._pos)
                     self._output.append(tk)
 
                 elif self._currentChar == '*':
-                    tk = token.Token(MULT, '*', self._pos)
+                    tk = MyToken(MULT, '*', self._pos)
                     self._output.append(tk)
 
                 elif self._currentChar == '/':
-                    tk = token.Token(DIV, '/', self._pos)
+                    tk = MyToken(DIV, '/', self._pos)
                     self._output.append(tk)
 
                 elif self._currentChar.isdigit():
-                    tk = token.Token(INT, self.getMultidigitInteger(), self._pos)
-                    self._output.append(tk) # need to come up with a better name...
+                    tk = MyToken(INT, self._currentChar, self._pos)
+                    self._output.append(tk)
 
                 else:
                     print("Invalid character!") # needs to be improved based on the info attached to the char.
                                                 # to give more info to the user.
-                
-            self.advanceByOne()
 
 
     def getListOfTokens(self):
@@ -111,7 +87,7 @@ class Tokenizer:
         ['+', '1', '2']
         '''
 
-        self.prepareDataFromInput()
+        self._prepareDataFromInput()
         
         return self._output
 
@@ -121,7 +97,25 @@ if __name__ == '__main__':
     #import doctest
     #doctest.testmod()
 
-    tkz = Tokenizer('+ 1 2')
-    Tokens = tkz.getListOfTokens()
-    print(Tokens)
+    tkz = MyTokenizer('+ 1 2')
+    #tkz = MyTokenizer('+ 1  2')
+    #tkz = MyTokenizer(' + 1 2')
+    #tkz = MyTokenizer('+ 1 2 ')
+    #tkz = MyTokenizer('+1 2')
+    #tkz = MyTokenizer('+12')
+
+    # Tests with other operators:
+    #tkz = MyTokenizer('- 1 2')
+    #tkz = MyTokenizer('* 1 2')
+    #tkz = MyTokenizer('/ 1 2')
+    
+    print(tkz)
+    print(tkz._pos)
+    print(tkz._currentChar)
+    tokens = tkz.getListOfTokens()
+
+    for i in tokens:
+        print(i)
+
+    print(tkz)
 
