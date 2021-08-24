@@ -35,15 +35,15 @@ class Tokenizer:
         
         return '(' + self._input + ') -> Tokenizer -> ' + self._output
 
-
-    def advanceByOne(self):
+    # Since these methods are helper methods, they should be private, hence the underscore convention.
+    def _advanceByOne(self):
         '''(Tokenizer) -> NoneType'''
 
         self._pos += 1
         self._currentChar = self._input[self._pos]
     
 
-    def getMultidigitInteger(self):
+    def _getMultidigitInteger(self):
         '''(Tokenizer) -> int
 
         Return a multidigit integer (lexeme). 
@@ -58,7 +58,7 @@ class Tokenizer:
         return result
 
     
-    def prepareDataFromInput(self):
+    def _prepareDataFromInput(self):
         '''(Tokenizer) -> NoneType'''
 
         while self._pos < len(self._input):
