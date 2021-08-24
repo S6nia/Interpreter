@@ -12,13 +12,13 @@ INT, PLUS, MINUS, MULT, DIV, LPAREN, RPARENT = (
     'INT', 'PLUS', 'MINUS', 'MULT', 'DIV', 'LPAREN', 'RPARENT'
 )
 
-class Token:
+class MyToken:
     '''A token.'''
     
     def __init__(self, desc, value, index):
-        '''(Token, str, str, int) -> Nonetype
+        '''(MyToken, str, str, int) -> Nonetype
 
-        >>> token = Token('INT', 2, 0)
+        >>> token = MyToken('INT', 2, 0)
         >>> token.getType()
         'INT'
         >>> token.getValue()
@@ -33,11 +33,11 @@ class Token:
         
     
     def __str__(self):
-        '''(Token) -> str
+        '''(MyToken) -> str
 
         Return a string representation of the token.
 
-        >>> token = Token('INT', '2', 0)
+        >>> token = MyToken('INT', '2', 0)
         >>> str(token)
         'Token {type: INT, value: 2, index: 0}'
         '''
@@ -47,11 +47,11 @@ class Token:
 
     
     def getType(self):
-        '''(Token) -> str
+        '''(MyToken) -> str
 
         Return the type of the token (INT, PLUS, MINUS, MULT, DIV, LPAREN, RPAREN).
 
-        >>> token = Token('INT', 2, 0)
+        >>> token = MyToken('INT', 2, 0)
         >>> token.getType()
         'INT'
         '''
@@ -60,11 +60,11 @@ class Token:
 
 
     def getValue(self):
-        '''(Token) -> str
+        '''(MyToken) -> str
 
         Return the value of the token.
 
-        >>> token = Token('INT', 2, 0)
+        >>> token = MyToken('INT', 2, 0)
         >>> token.getValue()
         2
         '''
@@ -72,11 +72,11 @@ class Token:
 
 
     def getIndex(self):
-        '''(Token) -> int
+        '''(MyToken) -> int
 
         Return the index of the position of the token in the input.
 
-        >>> token = Token('INT', 2, 0)
+        >>> token = MyToken('INT', 2, 0)
         >>> token.getIndex()
         0
         '''
@@ -92,8 +92,8 @@ if __name__ == '__main__':
     doctest.testmod()
 
     # Creating some examples.
-    tk1 = Token(INT, '2', 0)
-    tk2 = Token(PLUS, '+', 1)
+    tk1 = MyToken(INT, '2', 0)
+    tk2 = MyToken(PLUS, '+', 1)
 
     print(tk1)
     print(tk2)
