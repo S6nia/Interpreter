@@ -46,10 +46,11 @@ class MyTokenizer:
     def _prepareDataFromInput(self):
         '''(Tokenizer) -> NoneType'''
 
+        #multiDigit = ''
         for self._pos in range(len(self._input)):
-
+    
             self._currentChar = self._input[self._pos]
-
+            
             if self._currentChar.isspace():
                continue # this statement returns the control to the beginning of the while loop :) 
 
@@ -72,8 +73,18 @@ class MyTokenizer:
                     self._output.append(tk)
 
                 elif self._currentChar.isdigit():
-                    tk = MyToken(INT, self._currentChar, self._pos)
-                    self._output.append(tk)
+                    #tk = MyToken(INT, self._currentChar, self._pos)
+                    #self._output.append(tk)
+
+                    if not self._input[self._pos - 1].isdigit():
+                        #multiDigit = self._currentChar
+                        tk = MyToken(INT, self._currentChar, self._pos)
+                        self._output.append(tk)
+                    else:
+                        #multiDigit += self._currentChar
+                        #tk = MyToken(INT, multiDigit, self._pos)
+                        #self._output.append(tk)
+                        self._output[-1]._value += self._currentChar
 
                 else:
                     print("Invalid character!") # needs to be improved based on the info attached to the char.
@@ -102,7 +113,7 @@ if __name__ == '__main__':
     #import doctest
     #doctest.testmod()
 
-    # Creating some examples
+    # Creating some examples. Testing whitespaces.
     #tkz = MyTokenizer('+ 1 2')
     #tkz = MyTokenizer('+ 1  2')
     #tkz = MyTokenizer(' + 1 2')
@@ -110,11 +121,20 @@ if __name__ == '__main__':
     #tkz = MyTokenizer('+1 2')
     #tkz = MyTokenizer('+12')
 
-    # Tests with other operators:
+    # Testing with other operators:
     #tkz = MyTokenizer('- 1 2')
     #tkz = MyTokenizer('* 1 2')
     #tkz = MyTokenizer('/ 1 2')
-    tkz = MyTokenizer('+ 1 2 3')
+    #tkz = MyTokenizer('+ 1 2 3')
+
+    # Testing with multi-digit integers
+    #tkz = MyTokenizer('+ 11 22 ')
+    #tkz = MyTokenizer('+11 22 ')
+    #tkz = MyTokenizer('* 3 111')
+    tkz = MyTokenizer(' +12')
+
+    # Testing invalid token
+    #tkz = MyTokenizer(' !12')
     
     print(tkz)
     print()
