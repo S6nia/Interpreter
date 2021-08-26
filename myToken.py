@@ -45,6 +45,22 @@ class MyToken:
         return 'Token {type: ' + self._type + ', ' + 'value: ' + self._value \
                + ', index: ' + str(self._index) + '}'
 
+
+    def setValue(self, value):
+        '''(MyToken) -> NoneType
+
+        Updates the value of the instance variable self._value.
+
+        >>> token = MyToken('INT', 2, 0)
+        >>> token.getValue()
+        2
+        >>> token.setValue(4)
+        >>> token.getValue()
+        4
+        '''
+        
+        self._value = value
+    
     
     def getType(self):
         '''(MyToken) -> str
@@ -98,8 +114,6 @@ if __name__ == '__main__':
     print(tk1)
     print(tk2)
 
-    print(tk1._type)
-    print(tk2._type)
     print(tk1.getType())
     print(tk2.getType())
     print(tk1.getValue())
