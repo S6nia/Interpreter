@@ -84,7 +84,9 @@ class MyTokenizer:
                         #multiDigit += self._currentChar
                         #tk = MyToken(INT, multiDigit, self._pos)
                         #self._output.append(tk)
-                        self._output[-1]._value += self._currentChar
+                        #self._output[-1]._value += self._currentChar
+                        value = self._output[-1].getValue() + self._currentChar
+                        self._output[-1].setValue(value)
 
                 else:
                     print("Invalid character!") # needs to be improved based on the info attached to the char.
