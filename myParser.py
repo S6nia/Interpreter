@@ -40,17 +40,24 @@ class MyParser:
             currenTokenValue = currenToken.getValue()
             print(currenTokenValue)
             
-            if  currenTokenValue == '+' or  currenTokenValue == '-':
+            if  currenTokenValue == '+':
+
+                test = self._tokens.pop(0)
+                print(test)
+                value1 = int(self._getTerm())
+                print(value1)
+                value2 = int(self._getTerm())
+                print(value2)
+                result = value1 + value2
+                print(result)
+
+            elif currenTokenValue == '-':
+                
                 test = self._tokens.pop(0)
                 print(test)
                 value1 = self._getTerm()
                 value2 = self._getTerm()
-
-                if currenTokenValue == '+':
-                    result = value1 + value2
-
-                else:
-                    result = value1 - value2
+                result = value1 - value2
 
             else:
                 done = True
@@ -98,6 +105,7 @@ class MyParser:
     def getResult(self):
 
         self._result = self._getExpression()
+        print(self._result)
 
         return self._result
 
@@ -110,5 +118,5 @@ if __name__ == '__main__':
     tokens = tkz.getListOfTokens()
     psr = MyParser(tokens)
     result = psr.getResult()
-    print(result)
+    print('Result: ', result)
     
