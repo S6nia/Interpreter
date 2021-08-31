@@ -5,13 +5,13 @@
 
 
 ##
-# This module defines the Tokenizer class.
+# This module defines the MyTokenizer class.
 #
 
 from myToken import MyToken
 
-INT, PLUS, MINUS, MULT, DIV, LPAREN, RPARENT = (
-    'INT', 'PLUS', 'MINUS', 'MULT', 'DIV', 'LPAREN', 'RPARENT'
+INT, PLUS, MINUS, MULT, DIV, LPARENT, RPARENT = (
+    'INT', 'PLUS', 'MINUS', 'MULT', 'DIV', 'LPARENT', 'RPARENT'
 )
 
 class MyTokenizer:
@@ -40,7 +40,7 @@ class MyTokenizer:
         for tk in self._output:
             lst.append(tk.getValue())
         
-        return '(' + self._input + ') -> Tokenizer -> ' + str(lst)
+        return '\'' + self._input + '\' -> Tokenizer -> ' + str(lst)
 
     
     def _prepareDataFromInput(self):
@@ -70,6 +70,14 @@ class MyTokenizer:
 
                 elif self._currentChar == '/':
                     tk = MyToken(DIV, '/', self._pos)
+                    self._output.append(tk)
+
+                elif self._currentChar == '(':
+                    tk = MyToken(LPARENT, '(', self._pos)
+                    self._output.append(tk)
+
+                elif self._currentChar == ')':
+                    tk = MyToken(RPARENT, ')', self._pos)
                     self._output.append(tk)
 
                 elif self._currentChar.isdigit():
@@ -133,10 +141,13 @@ if __name__ == '__main__':
     #tkz = MyTokenizer('+ 11 22 ')
     #tkz = MyTokenizer('+11 22 ')
     #tkz = MyTokenizer('* 3 111')
-    tkz = MyTokenizer(' +12')
+    #tkz = MyTokenizer(' +12')
 
     # Testing invalid token
     #tkz = MyTokenizer(' !12')
+
+    # Testing with parentheses
+    tkz = MyTokenizer('+ (* 2 3) (* 2 4)')
     
     print(tkz)
     print()

@@ -5,11 +5,11 @@
 
 
 ##
-# This module defines the Token class.
+# This module defines the MyToken class.
 #
 
-INT, PLUS, MINUS, MULT, DIV, LPAREN, RPARENT = (
-    'INT', 'PLUS', 'MINUS', 'MULT', 'DIV', 'LPAREN', 'RPARENT'
+INT, PLUS, MINUS, MULT, DIV, LPARENT, RPARENT = (
+    'INT', 'PLUS', 'MINUS', 'MULT', 'DIV', 'LPARENT', 'RPARENT'
 )
 
 class MyToken:
@@ -65,7 +65,7 @@ class MyToken:
     def getType(self):
         '''(MyToken) -> str
 
-        Return the type of the token (INT, PLUS, MINUS, MULT, DIV, LPAREN, RPAREN).
+        Return the type of the token (INT, PLUS, MINUS, MULT, DIV, LPARENT, RPARENT).
 
         >>> token = MyToken('INT', 2, 0)
         >>> token.getType()
