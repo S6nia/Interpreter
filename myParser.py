@@ -27,9 +27,9 @@ class MyParser:
 
     # Following syntax diagrams/grammar <-- Double check this!
     # Applying the mutual recursion technique:
-    def _getExpression(self, done = False):
+    def _getExpression(self):
 
-        done = done
+        done = False
         while not done and len(self._tokens) > 0:
 
             currenToken = self._tokens[0] # token to be analised, current
@@ -37,10 +37,10 @@ class MyParser:
             
             if  currenTokenValue == '+' or currenTokenValue == '-':
                 self._tokens.pop(0)
-                #test = self._tokens.pop(0)
-                #print(test)
                 value1 = int(self._getFactor())
+                print('E: 2, O:', value1)
                 value2 = int(self._getFactor())
+                print('E: 3. O:', value2)
 
                 if currenTokenValue == '+':
                     result = value1 + value2
@@ -49,7 +49,7 @@ class MyParser:
                 else:
                     result = value1 - value2
 
-            elif currenTokenValue != '+' or currenTokenValue != '-' or currenTokenValue != ')':
+            elif currenTokenValue == '*' or currenTokenValue == '/':
                 result = self._getTerm()
 
             else:
@@ -69,14 +69,16 @@ class MyParser:
             if  currenTokenValue == '*' or currenTokenValue == '/':
                 self._tokens.pop(0)
                 value1 = int(self._getFactor())
+                print('E: 2, O:', value1)
                 value2 = int(self._getFactor())
+                print('E: 3. O:', value2)
 
                 if currenTokenValue == '*':
                     result = value1 * value2
                 else:
                     result = value1 / value2
 
-            elif currenTokenValue != '*' or currenTokenValue != '/': 
+            elif currenTokenValue == '(' or currenTokenValue.isdigit(): 
                 result = self._getFactor()
 
             else:
@@ -87,25 +89,12 @@ class MyParser:
 
     def _getFactor(self):
 
-        token = self._tokens.pop(0) # error message subscriptable! lol
-        print(token)
+        token = self._tokens.pop(0)
         tokenValue = token.getValue()
-
-        #if tokenValue.isdigit():
-        #    return tokenValue
 
         if tokenValue == '(':
             result = self._getExpression()
             self._tokens.pop(0)
-            #test = self._tokens.pop(0)
-            #print(test)
-            #if len(self._tokens) != 0:
-            #   self._tokens.pop(0)
-            
-
-##        elif tokenValue == ')':
-##            result = self._getExpression()
-##            #result = self._getExpression(True)
             
         else:
             result = tokenValue
@@ -115,7 +104,6 @@ class MyParser:
 
     def getResult(self):
 
-        # print(str(self._tokens))
         self._result = self._getExpression() # I could return this directly.
                                              # Let's see if I'll need this property in the future...
 
@@ -138,11 +126,17 @@ if __name__ == '__main__':
     #tkz = MyTokenizer('-2  1')   #- #P
 
     # Testing with parentheses:
-    tkz = MyTokenizer('+ (+ 2 3)(+ 2 4)')
+    #tkz = MyTokenizer('+ (+ 2 3)(+ 2 4)')
     #tkz = MyTokenizer('+ (* 2 3)(* 2 4)')
+    #tkz = MyTokenizer('+ 2 3')
+    #tkz = MyTokenizer('* 2 3')
+    tkz = MyTokenizer('+ (+ 2 3)(+ (* 2 1) (* 2 2))')
     
     tokens = tkz.getListOfTokens()
     psr = MyParser(tokens)
     result = psr.getResult()
     print('Result: ', result)
     
+
+
+
