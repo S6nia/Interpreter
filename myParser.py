@@ -29,6 +29,32 @@ class MyParser:
     # Applying the mutual recursion technique:
     def _getExpression(self):
 
+##        done = False
+##        while not done and len(self._tokens) > 0:
+##
+##            currenToken = self._tokens[0] # token to be analised, current
+##            currenTokenValue = currenToken.getValue()
+##            
+##            if  currenTokenValue == '+' or currenTokenValue == '-':
+##                self._tokens.pop(0)
+##                value1 = int(self._getFactor())
+##                value2 = int(self._getFactor())
+##                
+##                if currenTokenValue == '+':
+##                    result = value1 + value2
+##                    
+##                else:
+##                    result = value1 - value2
+##
+##            elif currenTokenValue == '*' or currenTokenValue == '/':
+##                result = self._getTerm()
+##
+##            else:
+##                done = True
+##        
+##        return result
+
+
         done = False
         while not done and len(self._tokens) > 0:
 
@@ -37,14 +63,16 @@ class MyParser:
             
             if  currenTokenValue == '+' or currenTokenValue == '-':
                 self._tokens.pop(0)
-                value1 = int(self._getFactor())
-                print('E: 2, O:', value1)
-                value2 = int(self._getFactor())
-                print('E: 3. O:', value2)
 
+                if len(self._tokens) == 1:
+                    return self._tokens[0].getValue()
+
+                else:
+                    value1 = int(self._getFactor())
+                    value2 = int(self._getFactor())
+                
                 if currenTokenValue == '+':
                     result = value1 + value2
-                    print(result)
                     
                 else:
                     result = value1 - value2
@@ -69,9 +97,7 @@ class MyParser:
             if  currenTokenValue == '*' or currenTokenValue == '/':
                 self._tokens.pop(0)
                 value1 = int(self._getFactor())
-                print('E: 2, O:', value1)
                 value2 = int(self._getFactor())
-                print('E: 3. O:', value2)
 
                 if currenTokenValue == '*':
                     result = value1 * value2
@@ -87,7 +113,7 @@ class MyParser:
         return result
         
 
-    def _getFactor(self):
+    def _getFactor(self):      
 
         token = self._tokens.pop(0)
         tokenValue = token.getValue()
@@ -100,6 +126,24 @@ class MyParser:
             result = tokenValue
 
         return result
+
+
+##        if len(self._tokens) == 2:
+##             result = tokenValue
+##
+##        else:
+##            token = self._tokens.pop(0)
+##            tokenValue = token.getValue()
+##
+##            if tokenValue == '(':
+##                result = self._getExpression()
+##                self._tokens.pop(0)
+##            
+##            else:
+##                result = tokenValue
+##
+##        return result
+            
 
 
     def getResult(self):
@@ -130,7 +174,13 @@ if __name__ == '__main__':
     #tkz = MyTokenizer('+ (* 2 3)(* 2 4)')
     #tkz = MyTokenizer('+ 2 3')
     #tkz = MyTokenizer('* 2 3')
-    tkz = MyTokenizer('+ (+ 2 3)(+ (* 2 1) (* 2 2))')
+    #tkz = MyTokenizer('+ (+ 2 3)(+ (* 2 1) (* 2 2))')
+    #tkz = MyTokenizer('- (+ 2 3)(+ (* 2 1) (* 2 2))')
+    #tkz = MyTokenizer('- (+ 2 3)(+ (* 2 1) (/ 2 2))')
+
+    # Testing with only one number
+    #tkz = MyTokenizer('+12')
+    tkz = MyTokenizer('+1')
     
     tokens = tkz.getListOfTokens()
     psr = MyParser(tokens)
