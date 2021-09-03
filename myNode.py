@@ -97,4 +97,17 @@ if __name__ == '__main__':
     import doctest
     doctest.testmod()
 
+    # Creating some examples
+    # Taking as an example: + (* 2 3) (* 3 3)
+    node1 = MyNode('LEAF', '3', 0)
+    node2 = MyNode('RLEAF', '3', 1)
+    node3 = MyNode('LEAF', '2', 2)
+    node4 = MyNode('RLEAF', '3', 3)
+    node5 = MyNode('LNODE', '*', 4)
+    node6 = MyNode('RNODE', '*', 5)
+    node7 = MyNode('ROOT', '+', 6)
 
+    nodes = [node1, node2, node3, node4, node5, node6, node7]
+    
+    for node in nodes:
+        print(node)
