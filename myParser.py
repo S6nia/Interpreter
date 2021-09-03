@@ -65,7 +65,10 @@ class MyParser:
                 self._tokens.pop(0)
 
                 if len(self._tokens) == 1:
-                    return self._tokens[0].getValue()
+                    if currenTokenValue == '+':
+                        return self._tokens[0].getValue()
+                    else:
+                        return (currenTokenValue + self._tokens[0].getValue())
 
                 else:
                     value1 = int(self._getFactor())
@@ -88,6 +91,31 @@ class MyParser:
 
     def _getTerm(self):
 
+##        done = False
+##        while not done and len(self._tokens) > 0:
+##
+##            currenToken = self._tokens[0] # token to be analised, current
+##            currenTokenValue = currenToken.getValue()
+##            
+##            if  currenTokenValue == '*' or currenTokenValue == '/':
+##                self._tokens.pop(0)
+##                value1 = int(self._getFactor())
+##                value2 = int(self._getFactor())
+##
+##                if currenTokenValue == '*':
+##                    result = value1 * value2
+##                else:
+##                    result = value1 / value2
+##
+##            elif currenTokenValue == '(' or currenTokenValue.isdigit(): 
+##                result = self._getFactor()
+##
+##            else:
+##                done = True
+##
+##        return result
+
+
         done = False
         while not done and len(self._tokens) > 0:
 
@@ -96,8 +124,16 @@ class MyParser:
             
             if  currenTokenValue == '*' or currenTokenValue == '/':
                 self._tokens.pop(0)
-                value1 = int(self._getFactor())
-                value2 = int(self._getFactor())
+
+                if len(self._tokens) == 1:
+                    
+                    if currenTokenValue == '*':
+                        return 2 * int(self._tokens[0].getValue())
+                    else:
+                        return int(self._tokens[0].getValue())/int(self._tokens[0].getValue())
+                else:
+                    value1 = int(self._getFactor())
+                    value2 = int(self._getFactor())
 
                 if currenTokenValue == '*':
                     result = value1 * value2
@@ -178,9 +214,12 @@ if __name__ == '__main__':
     #tkz = MyTokenizer('- (+ 2 3)(+ (* 2 1) (* 2 2))')
     #tkz = MyTokenizer('- (+ 2 3)(+ (* 2 1) (/ 2 2))')
 
-    # Testing with only one number
+    # Testing with only one number:
     #tkz = MyTokenizer('+12')
-    tkz = MyTokenizer('+1')
+    #tkz = MyTokenizer('-1')
+    #tkz = MyTokenizer('+123')
+    #tkz = MyTokenizer('*2')
+    tkz = MyTokenizer('/2')
     
     tokens = tkz.getListOfTokens()
     psr = MyParser(tokens)
