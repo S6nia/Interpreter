@@ -12,6 +12,7 @@
 #
 
 #from myToken import MyToken
+import math
 
 class MyParser:
     '''A parser.'''
@@ -66,9 +67,9 @@ class MyParser:
 
                 if len(self._tokens) == 1:
                     if currenTokenValue == '+':
-                        return self._tokens[0].getValue()
+                        return 2 * int(self._tokens[0].getValue())
                     else:
-                        return (currenTokenValue + self._tokens[0].getValue())
+                        return int(self._tokens[0].getValue()) - int(self._tokens[0].getValue())
 
                 else:
                     value1 = int(self._getFactor())
@@ -128,7 +129,7 @@ class MyParser:
                 if len(self._tokens) == 1:
                     
                     if currenTokenValue == '*':
-                        return 2 * int(self._tokens[0].getValue())
+                        return math.trunc(math.pow(int(self._tokens[0].getValue()), 2))
                     else:
                         return int(self._tokens[0].getValue())/int(self._tokens[0].getValue())
                 else:
@@ -219,7 +220,15 @@ if __name__ == '__main__':
     #tkz = MyTokenizer('-1')
     #tkz = MyTokenizer('+123')
     #tkz = MyTokenizer('*2')
-    tkz = MyTokenizer('/2')
+    #tkz = MyTokenizer('/2')
+    #tkz = MyTokenizer('/ 5 2')
+    
+    # While writing the report: 05 09 21
+    #tkz = MyTokenizer('+ (+ 2 3)(+ 2 4)(+ 2 3)') # nao funcemina :)
+    #tkz = MyTokenizer('*12')
+    #tkz = MyTokenizer('/12')
+    #tkz = MyTokenizer('+12')
+    tkz = MyTokenizer('-12')
     
     tokens = tkz.getListOfTokens()
     psr = MyParser(tokens)
