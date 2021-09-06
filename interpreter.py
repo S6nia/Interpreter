@@ -38,9 +38,12 @@ def main():
     63
     '''
 
-    print("Calculator\nEnter the key 'Q' to exit the program.")
+    print("Calculator AbaCactus :)\n")
+    print("Please follow the Polish notation, e.g. '+ 2 3' or '+ 2 (* 1 3)'.")
+    print("(Enter the key 'Q' to exit the program)\n")
     
     userInput = input(">>> ")
+    
     while userInput.upper() != 'Q':
             
         tk = MyTokenizer(userInput)
@@ -51,11 +54,18 @@ def main():
         #result = eva.getResult()
 
         result = psr.getResult()
-
         print(result)
 
-        userInput = input(">>> ")
+##        node = psr.getNode()
+##        eva = evaluator.Evaluator(node)
+##        result = eva.getResult()
+##        #result = str(eva)
+##
+##        print(result)
+##        #print(eva)
 
+        userInput = input(">>> ")
+    
     print("The program has exited.")
     
 
