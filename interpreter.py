@@ -25,6 +25,8 @@
 from myTokenizer import MyTokenizer
 from myParser import MyParser
 #from myEvaluator import MyEvaluator
+#import sys
+#from termcolor import colored
 
 def main():
     '''
@@ -38,6 +40,7 @@ def main():
     63
     '''
 
+    #print(colored("Calculator AbaCactus :)\n", 'green'))
     print("Calculator AbaCactus :)\n")
     print("Please follow the Polish notation, e.g. '+ 2 3' or '+ 2 (* 1 3)'.")
     print("(Enter the key 'Q' to exit the program)\n")
