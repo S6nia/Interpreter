@@ -46,30 +46,65 @@ def main():
     print("(Enter the key 'Q' to exit the program)\n")
     
     userInput = input(">>> ")
+
+    if userInput.upper() != 'Q':
     
-    while userInput.upper() != 'Q':
+        while userInput.upper() != 'Q':
             
-        tk = MyTokenizer(userInput)
-        tokens = tk.getListOfTokens()
-        psr = MyParser(tokens)
-        #expression = psr.getExpression()
-        #eva = evaluator.Evaluator(expression)
-        #result = eva.getResult()
+            tk = MyTokenizer(userInput)
+            tokens = tk.getListOfTokens()
+            psr = MyParser(tokens)
+            #expression = psr.getExpression()
+            #eva = evaluator.Evaluator(expression)
+            #result = eva.getResult()
 
-        result = psr.getResult()
-        print(result)
+            result = psr.getResult()
+            print(result)
 
-##        node = psr.getNode()
-##        eva = evaluator.Evaluator(node)
-##        result = eva.getResult()
-##        #result = str(eva)
+##          node = psr.getNode()
+##          eva = evaluator.Evaluator(node)
+##          result = eva.getResult()
+##          #result = str(eva)
 ##
-##        print(result)
-##        #print(eva)
+##          print(result)
+##          #print(eva)
 
-        userInput = input(">>> ")
-    
-    print("The program has exited.")
+            userInput = input(">>> ")
+
+            if userInput.upper() == 'Q':
+                userInputExit = input("Are you sure you want to quit the program? Y/N: ")
+
+                if userInputExit.upper() == 'Y':
+                    print("The program has exited.")
+                else:
+                    userInput = input(">>> ")
+
+
+##    userInput = input(">>> ")
+##    
+##    while userInput.upper() != 'Q':
+##            
+##        tk = MyTokenizer(userInput)
+##        tokens = tk.getListOfTokens()
+##        psr = MyParser(tokens)
+##        #expression = psr.getExpression()
+##        #eva = evaluator.Evaluator(expression)
+##        #result = eva.getResult()
+##
+##        result = psr.getResult()
+##        print(result)
+##
+####        node = psr.getNode()
+####        eva = evaluator.Evaluator(node)
+####        result = eva.getResult()
+####        #result = str(eva)
+####
+####        print(result)
+####        #print(eva)
+##
+##        userInput = input(">>> ")
+##    
+##    print("The program has exited.")
     
 
 if __name__ == '__main__':
