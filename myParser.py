@@ -12,7 +12,9 @@
 #
 
 #from myToken import MyToken
-import math
+#import math
+from myNode import MyNode
+from myEvaluator import MyEvaluator
 
 class MyParser:
     '''A parser.'''
@@ -21,6 +23,7 @@ class MyParser:
 
         self._tokens = tokens # list of obj of type token
         self._result = 0
+        self._nodes = []
 
 
     #def __str__():
@@ -29,33 +32,7 @@ class MyParser:
     # Following syntax diagrams/grammar <-- Double check this!
     # Applying the mutual recursion technique:
     def _getExpression(self):
-
-##        done = False
-##        while not done and len(self._tokens) > 0:
-##
-##            currenToken = self._tokens[0] # token to be analised, current
-##            currenTokenValue = currenToken.getValue()
-##            
-##            if  currenTokenValue == '+' or currenTokenValue == '-':
-##                self._tokens.pop(0)
-##                value1 = int(self._getFactor())
-##                value2 = int(self._getFactor())
-##                
-##                if currenTokenValue == '+':
-##                    result = value1 + value2
-##                    
-##                else:
-##                    result = value1 - value2
-##
-##            elif currenTokenValue == '*' or currenTokenValue == '/':
-##                result = self._getTerm()
-##
-##            else:
-##                done = True
-##        
-##        return result
-
-
+        
         done = False
         while not done and len(self._tokens) > 0:
 
@@ -67,19 +44,36 @@ class MyParser:
 
                 if len(self._tokens) == 1:
                     if currenTokenValue == '+':
-                        return 2 * int(self._tokens[0].getValue())
+                        #result = self._tokens[0].getValue()
+                        #refactor
+                        node = MyNode(currenTokenValue, self._tokens[0].getValue())
+                        eva = MyEvaluator(node)
+                        return eva.getResult()
                     else:
-                        return int(self._tokens[0].getValue()) - int(self._tokens[0].getValue())
+                        #return MyNode(currenTokenValue, self._tokens[0].getValue())
+                        node = MyNode(currenTokenValue, self._tokens[0].getValue())
+                        eva = MyEvaluator(node)
+                        return eva.getResult()
 
                 else:
                     value1 = int(self._getFactor())
                     value2 = int(self._getFactor())
                 
                 if currenTokenValue == '+':
-                    result = value1 + value2
+                    node = MyNode(currenTokenValue, value1, value2)
+                    eva = MyEvaluator(node)
+                    result =  eva.getResult()
+
+##                    #result = value1 + value2
+##                    result = MyEvaluator(MyNode(currenTokenValue, value1, value2))
+##                    print(result)
+##                    #self._nodes.append(result)
                     
                 else:
-                    result = value1 - value2
+                    #result = value1 - value2
+                    node = MyNode(currenTokenValue, value1, value2)
+                    eva = MyEvaluator(node)
+                    result =  eva.getResult()
 
             elif currenTokenValue == '*' or currenTokenValue == '/':
                 result = self._getTerm()
@@ -92,31 +86,6 @@ class MyParser:
 
     def _getTerm(self):
 
-##        done = False
-##        while not done and len(self._tokens) > 0:
-##
-##            currenToken = self._tokens[0] # token to be analised, current
-##            currenTokenValue = currenToken.getValue()
-##            
-##            if  currenTokenValue == '*' or currenTokenValue == '/':
-##                self._tokens.pop(0)
-##                value1 = int(self._getFactor())
-##                value2 = int(self._getFactor())
-##
-##                if currenTokenValue == '*':
-##                    result = value1 * value2
-##                else:
-##                    result = value1 / value2
-##
-##            elif currenTokenValue == '(' or currenTokenValue.isdigit(): 
-##                result = self._getFactor()
-##
-##            else:
-##                done = True
-##
-##        return result
-
-
         done = False
         while not done and len(self._tokens) > 0:
 
@@ -127,19 +96,37 @@ class MyParser:
                 self._tokens.pop(0)
 
                 if len(self._tokens) == 1:
-                    
+
                     if currenTokenValue == '*':
-                        return math.trunc(math.pow(int(self._tokens[0].getValue()), 2))
+                        node = MyNode(currenTokenValue, self._tokens[0].getValue())
+                        eva = MyEvaluator(node)
+                        return eva.getResult()
+                    
                     else:
-                        return int(self._tokens[0].getValue())/int(self._tokens[0].getValue())
+                        node = MyNode(currenTokenValue, self._tokens[0].getValue())
+                        eva = MyEvaluator(node)
+                        return eva.getResult()
+                    
+                    
+##                    if currenTokenValue == '*':
+##                        return math.trunc(math.pow(int(self._tokens[0].getValue()), 2))
+##                    else:
+##                        return int(self._tokens[0].getValue())/int(self._tokens[0].getValue())
                 else:
                     value1 = int(self._getFactor())
                     value2 = int(self._getFactor())
 
                 if currenTokenValue == '*':
-                    result = value1 * value2
+                    #result = value1 * value2
+                    node = MyNode(currenTokenValue, value1, value2)
+                    eva = MyEvaluator(node)
+                    result =  eva.getResult()
+                    
                 else:
-                    result = value1 / value2
+                    #result = value1 / value2
+                    node = MyNode(currenTokenValue, value1, value2)
+                    eva = MyEvaluator(node)
+                    result =  eva.getResult()
 
             elif currenTokenValue == '(' or currenTokenValue.isdigit(): 
                 result = self._getFactor()
@@ -163,31 +150,15 @@ class MyParser:
             result = tokenValue
 
         return result
-
-
-##        if len(self._tokens) == 2:
-##             result = tokenValue
-##
-##        else:
-##            token = self._tokens.pop(0)
-##            tokenValue = token.getValue()
-##
-##            if tokenValue == '(':
-##                result = self._getExpression()
-##                self._tokens.pop(0)
-##            
-##            else:
-##                result = tokenValue
-##
-##        return result
-            
-
+ 
 
     def getResult(self):
 
         self._result = self._getExpression() # I could return this directly.
                                              # Let's see if I'll need this property in the future...
 
+        print(self._nodes)
+        
         return self._result
 
 
@@ -216,19 +187,24 @@ if __name__ == '__main__':
     #tkz = MyTokenizer('- (+ 2 3)(+ (* 2 1) (/ 2 2))')
 
     # Testing with only one number:
-    #tkz = MyTokenizer('+12')
+    #tkz = MyTokenizer('-12')
     #tkz = MyTokenizer('-1')
     #tkz = MyTokenizer('+123')
     #tkz = MyTokenizer('*2')
     #tkz = MyTokenizer('/2')
     #tkz = MyTokenizer('/ 5 2')
-    
+
     # While writing the report: 05 09 21
     #tkz = MyTokenizer('+ (+ 2 3)(+ 2 4)(+ 2 3)') # nao funcemina :)
-    #tkz = MyTokenizer('*12')
-    #tkz = MyTokenizer('/12')
-    #tkz = MyTokenizer('+12')
-    tkz = MyTokenizer('-12')
+    #tkz = MyTokenizer('*11')
+    #tkz = MyTokenizer('/11')
+    #tkz = MyTokenizer('+11')
+    #tkz = MyTokenizer('-11')
+
+    #tkz = MyTokenizer('/11')
+    #tkz = MyTokenizer('+ 1 2')
+    #tkz = MyTokenizer('/123456789') # :)
+    tkz = MyTokenizer('+ 1111111') # Commas!!!
     
     tokens = tkz.getListOfTokens()
     psr = MyParser(tokens)
