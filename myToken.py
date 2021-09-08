@@ -114,11 +114,4 @@ if __name__ == '__main__':
     print(tk1)
     print(tk2)
 
-    print(tk1.getType())
-    print(tk2.getType())
-    print(tk1.getValue())
-    print(tk2.getValue())
-    print(tk1.getIndex())
-    print(tk2.getIndex())
     
-  
