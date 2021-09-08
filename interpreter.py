@@ -58,8 +58,28 @@ def main():
             #eva = evaluator.Evaluator(expression)
             #result = eva.getResult()
 
+##            result = psr.getResult()
+##            print(result)
+
+
             result = psr.getResult()
-            print(result)
+
+            result = str(result)
+            formattedResult = ''
+
+            if len(result) < 4:
+                print(result)
+
+            else:
+
+                for i in range(0, len(result)):
+                    formattedResult += result[i]
+
+                    if i%3 == 0 and i < len(result) - 1:
+                        formattedResult += ','
+
+                print(result)
+
 
 ##          node = psr.getNode()
 ##          eva = evaluator.Evaluator(node)
@@ -77,6 +97,8 @@ def main():
                 if userInputExit.upper() == 'Y':
                     print("The program has exited.")
                 else:
+                    print("")
+                    print("Welcome back!")
                     userInput = input(">>> ")
 
 
