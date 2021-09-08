@@ -19,25 +19,24 @@
 
 
 ##
-# This module defines the main function of the program: Interpreter Abacus :)
+# This module defines the main function of the program: Interpreter AbaCactus :)
 #
 
 from myTokenizer import MyTokenizer
 from myParser import MyParser
-#from myEvaluator import MyEvaluator
 #import sys
 #from termcolor import colored
 
 def main():
     '''
-    >>> 1
-    1
+    >>> +1
+    2
+    >>> +11
+    22
     >>> + 1 2
     3
     >>> + 10 20
     30
-    >>> + 11 21 31
-    63
     '''
 
     #print(colored("Calculator AbaCactus :)\n", 'green'))
@@ -47,87 +46,42 @@ def main():
     
     userInput = input(">>> ")
 
-    if userInput.upper() != 'Q':
-    
-        while userInput.upper() != 'Q':
+    while userInput.upper() != 'Q':
             
-            tk = MyTokenizer(userInput)
-            tokens = tk.getListOfTokens()
-            psr = MyParser(tokens)
-            #expression = psr.getExpression()
-            #eva = evaluator.Evaluator(expression)
-            #result = eva.getResult()
+        tk = MyTokenizer(userInput)
+        tokens = tk.getListOfTokens()
+        psr = MyParser(tokens)
+        
+        result = psr.getResult()
+        result = str(result)
+        formattedResult = ''
 
-##            result = psr.getResult()
-##            print(result)
+        # Helper function?
+        if len(result) < 4:
+            print(result)
+            
+        else:
+            for i in range(0, len(result)):
+                formattedResult += result[i]
+                
+                if i%3 == 0 and i < len(result) - 1:
+                    formattedResult += ','
 
+            print(result)
 
-            result = psr.getResult()
+        userInput = input(">>> ")
 
-            result = str(result)
-            formattedResult = ''
+        # Helper function?
+        if userInput.upper() == 'Q':
+            userInputExit = input("Are you sure you want to quit the program? Y/N: ")
 
-            if len(result) < 4:
-                print(result)
-
+            if userInputExit.upper() == 'Y':
+                print("The program has exited.")
             else:
+                print("")
+                print("Welcome back!")
+                userInput = input(">>> ")
 
-                for i in range(0, len(result)):
-                    formattedResult += result[i]
-
-                    if i%3 == 0 and i < len(result) - 1:
-                        formattedResult += ','
-
-                print(result)
-
-
-##          node = psr.getNode()
-##          eva = evaluator.Evaluator(node)
-##          result = eva.getResult()
-##          #result = str(eva)
-##
-##          print(result)
-##          #print(eva)
-
-            userInput = input(">>> ")
-
-            if userInput.upper() == 'Q':
-                userInputExit = input("Are you sure you want to quit the program? Y/N: ")
-
-                if userInputExit.upper() == 'Y':
-                    print("The program has exited.")
-                else:
-                    print("")
-                    print("Welcome back!")
-                    userInput = input(">>> ")
-
-
-##    userInput = input(">>> ")
-##    
-##    while userInput.upper() != 'Q':
-##            
-##        tk = MyTokenizer(userInput)
-##        tokens = tk.getListOfTokens()
-##        psr = MyParser(tokens)
-##        #expression = psr.getExpression()
-##        #eva = evaluator.Evaluator(expression)
-##        #result = eva.getResult()
-##
-##        result = psr.getResult()
-##        print(result)
-##
-####        node = psr.getNode()
-####        eva = evaluator.Evaluator(node)
-####        result = eva.getResult()
-####        #result = str(eva)
-####
-####        print(result)
-####        #print(eva)
-##
-##        userInput = input(">>> ")
-##    
-##    print("The program has exited.")
-    
 
 if __name__ == '__main__':
 
