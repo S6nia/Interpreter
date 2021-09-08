@@ -61,6 +61,62 @@ class MyEvaluator:
 
         self._performOperation()
 
-        return self._result
+        stringResult = str(self._result)
+        newStr = ''
+        
+        if len(stringResult) < 4:
+            return self._result
+
+        else:
+            #i = 0
+            #while i < len(stringResult):
+                
+            for i in range(0, len(stringResult)):
+                #newStr = stringResult[i]
+                newStr += stringResult[i]
+
+                if i % 3 == 0 and i < len(stringResult) - 1:
+                    newStr = newStr + ','
+                        
+##                    for j in range(i):
+##                        newStr = stringResult[i]
+##                    newStr
+##                    
+##                    #while i < len(stringResult):
+##                        #for j in range(i+1,i+3):
+##                     
+##                            newStr = stringResult[-j] + newStr
+##                    newStr = ',' + newStr
+##
+##                    self._result = newStr
+                
+            return newStr   
+    
+
+##        self._performOperation()
+##
+##        if len(str(self._result)) < 4:
+##            return self._result
+##        
+##        else: # Atention: Evaluator return an int! This development should take place in the Interpreter(main).
+##            
+##            stringResult = str(self._result)
+##            print(stringResult)
+##            stringLength = len(stringResult)
+##            newStr = ''
+##            for i in range(1, stringLength + 1, 3):
+##                #print(i)
+##                #print(stringResult[-i])
+##                #newStr = stringResult[-i] + ',' + newStr
+##                newStr = stringResult[-i] + ',' + newStr
+##                while i < len(stringResult):
+##                    for j in range(i+1,i+3):
+##                        #print(j)
+##                        newStr = stringResult[-j] + newStr
+##                    newStr = ',' + newStr
+##
+##            self._result = newStr
+##
+##        return self._result
 
         
