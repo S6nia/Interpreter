@@ -4,34 +4,32 @@
 # Date: 22 08 21
 
 
-# Parser verifica de certo modo a ordem dos tokens, eu penso! :) E pensas bem!
-
-
 ##
 # This module defines the MyParser class.
 #
 
-#from myToken import MyToken
-#import math
 from myNode import MyNode
 from myEvaluator import MyEvaluator
 
 class MyParser:
     '''A parser.'''
 
+    # Docstring?
     def __init__(self, tokens):
+        '''(MyParser, list of tokens) -> NoneType'''
 
         self._tokens = tokens # list of obj of type token
         self._result = 0
-        self._nodes = []
 
 
     #def __str__():
 
 
-    # Following syntax diagrams/grammar <-- Double check this!
-    # Applying the mutual recursion technique:
+    # Docstring?
+    # Applying the mutual recursion technique,
+    # following the syntax diagrams for evaluating an expression.
     def _getExpression(self):
+        '''(MyParser) -> int'''
         
         done = False
         while not done and len(self._tokens) > 0:
@@ -43,18 +41,18 @@ class MyParser:
                 self._tokens.pop(0)
 
                 if len(self._tokens) == 1:
+                    
                     if currenTokenValue == '+':
-                        #result = self._tokens[0].getValue()
                         #refactor
                         node = MyNode(currenTokenValue, self._tokens[0].getValue())
                         eva = MyEvaluator(node)
                         return eva.getResult()
+                    
                     else:
-                        #return MyNode(currenTokenValue, self._tokens[0].getValue())
                         node = MyNode(currenTokenValue, self._tokens[0].getValue())
                         eva = MyEvaluator(node)
                         return eva.getResult()
-
+                    
                 else:
                     value1 = int(self._getFactor())
                     value2 = int(self._getFactor())
@@ -63,14 +61,8 @@ class MyParser:
                     node = MyNode(currenTokenValue, value1, value2)
                     eva = MyEvaluator(node)
                     result =  eva.getResult()
-
-##                    #result = value1 + value2
-##                    result = MyEvaluator(MyNode(currenTokenValue, value1, value2))
-##                    print(result)
-##                    #self._nodes.append(result)
                     
                 else:
-                    #result = value1 - value2
                     node = MyNode(currenTokenValue, value1, value2)
                     eva = MyEvaluator(node)
                     result =  eva.getResult()
@@ -82,9 +74,11 @@ class MyParser:
                 done = True
         
         return result
-        
 
+        
+    # Docstring?
     def _getTerm(self):
+        '''(MyParser) -> int'''
 
         done = False
         while not done and len(self._tokens) > 0:
@@ -106,24 +100,17 @@ class MyParser:
                         node = MyNode(currenTokenValue, self._tokens[0].getValue())
                         eva = MyEvaluator(node)
                         return eva.getResult()
-                    
-                    
-##                    if currenTokenValue == '*':
-##                        return math.trunc(math.pow(int(self._tokens[0].getValue()), 2))
-##                    else:
-##                        return int(self._tokens[0].getValue())/int(self._tokens[0].getValue())
+                 
                 else:
                     value1 = int(self._getFactor())
                     value2 = int(self._getFactor())
 
                 if currenTokenValue == '*':
-                    #result = value1 * value2
                     node = MyNode(currenTokenValue, value1, value2)
                     eva = MyEvaluator(node)
                     result =  eva.getResult()
                     
                 else:
-                    #result = value1 / value2
                     node = MyNode(currenTokenValue, value1, value2)
                     eva = MyEvaluator(node)
                     result =  eva.getResult()
@@ -137,7 +124,8 @@ class MyParser:
         return result
         
 
-    def _getFactor(self):      
+    def _getFactor(self):
+        '''(MyParser) -> int'''
 
         token = self._tokens.pop(0)
         tokenValue = token.getValue()
@@ -153,31 +141,35 @@ class MyParser:
  
 
     def getResult(self):
+        '''(MyParser) -> int'''
 
         self._result = self._getExpression() # I could return this directly.
-                                             # Let's see if I'll need this property in the future...
-
-        print(self._nodes)
         
         return self._result
 
 
+# The following segment is executed if this file is to be run.
 if __name__ == '__main__':
 
+    # Testing automatically using doctest module.
+    import doctest
+    doctest.testmod()
+
+    # Creating some examples:
     from myTokenizer import MyTokenizer
+    
+    # Performing some tests
+    #tkz = MyTokenizer('+ 1 2')
+    #tkz = MyTokenizer('- 1 2')
+    #tkz = MyTokenizer('- 2 1')
+    #tkz = MyTokenizer('* 2 3')
+    #tkz = MyTokenizer('/ 6 3')
+    #tkz = MyTokenizer('+ 11 22')
+    #tkz = MyTokenizer('* 2 30') 
+    #tkz = MyTokenizer('/ 30 3')
+    #tkz = MyTokenizer('-2  1')
 
-    # Performing some tests:
-    #tkz = MyTokenizer('+ 1 2') #F #P
-    #tkz = MyTokenizer('- 1 2') #F #P #Accepts negatives
-    #tkz = MyTokenizer('- 2 1') #- #P
-    #tkz = MyTokenizer('* 2 3') #P #P
-    #tkz = MyTokenizer('/ 6 3') #P #P
-    #tkz = MyTokenizer('+ 11 22')#F #P
-    #tkz = MyTokenizer('* 2 30') #P #P
-    #tkz = MyTokenizer('/ 30 3') #P #P
-    #tkz = MyTokenizer('-2  1')   #- #P
-
-    # Testing with parentheses:
+    # Testing with parentheses
     #tkz = MyTokenizer('+ (+ 2 3)(+ 2 4)')
     #tkz = MyTokenizer('+ (* 2 3)(* 2 4)')
     #tkz = MyTokenizer('+ 2 3')
@@ -186,7 +178,7 @@ if __name__ == '__main__':
     #tkz = MyTokenizer('- (+ 2 3)(+ (* 2 1) (* 2 2))')
     #tkz = MyTokenizer('- (+ 2 3)(+ (* 2 1) (/ 2 2))')
 
-    # Testing with only one number:
+    # Testing with only one number
     #tkz = MyTokenizer('-12')
     #tkz = MyTokenizer('-1')
     #tkz = MyTokenizer('+123')
@@ -195,22 +187,30 @@ if __name__ == '__main__':
     #tkz = MyTokenizer('/ 5 2')
 
     # While writing the report: 05 09 21
-    #tkz = MyTokenizer('+ (+ 2 3)(+ 2 4)(+ 2 3)') # nao funcemina :)
+    #tkz = MyTokenizer('+ (+ 2 3)(+ 2 4)(+ 2 3)') # It does not work with more than two operands.
     #tkz = MyTokenizer('*11')
     #tkz = MyTokenizer('/11')
     #tkz = MyTokenizer('+11')
     #tkz = MyTokenizer('-11')
 
+    # More tests on Evaluator: 07 09 21
     #tkz = MyTokenizer('/11')
     #tkz = MyTokenizer('+ 1 2')
-    #tkz = MyTokenizer('/123456789') # :)
-    tkz = MyTokenizer('+ 1111111') # Commas!!!
+    #tkz = MyTokenizer('/123456789')
+    #tkz = MyTokenizer('+ 1111111')
+
+    # With commas
+    #tkz = MyTokenizer('+11')
+    #tkz = MyTokenizer('+111')
+    #tkz = MyTokenizer('+1111')
+    #tkz = MyTokenizer('+11111')
+    #tkz = MyTokenizer('+111111')
+    #tkz = MyTokenizer('+1111111')
+    tkz = MyTokenizer('+1111111111')
     
     tokens = tkz.getListOfTokens()
     psr = MyParser(tokens)
     result = psr.getResult()
     print('Result: ', result)
     
-
-
-
+  
