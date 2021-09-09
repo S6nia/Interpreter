@@ -20,9 +20,41 @@ class MyParser:
 
         self._tokens = tokens # list of obj of type token
         self._result = 0
-
+        self._node = MyNode(None, None)
 
     #def __str__():
+
+
+    def __str__(self):
+        '''(MyParser) -> str
+
+        Return a string representation of the parser.
+
+        >>> tkz = MyTokenizer('+ 1 2')
+        >>> tokens = tkz.getListOfTokens()
+        >>> psr = MyParser(tokens)
+        >>> print(psr)
+        ['+', '1', '2'] -> Parser -> ('+', 1, 2)
+        '''
+
+        tokensList = []
+        for tk in self._tokens:
+            lst.append(tk.getValue())
+
+        #nodeValues = []
+        #for value in node:
+        #    nodeValues.append(value.getValue())
+        #tpl = tuple(nodeValues)
+
+        tpl = (self._node.self.getOperator(), self._node.self.getOperand(), self._node.self.getOperand())
+        def ast(node):
+            '''(tuple) -> str '''
+            
+            print('   ', node[0])
+            print('  /' + '   \\')
+            print(str(node[1]) + '       ' + str(node[2]))
+        
+        return '\'' + str(lst) + '\' -> Parser -> ' + ast(tpl)
 
 
     # Docstring?
@@ -44,8 +76,8 @@ class MyParser:
                     
                     if currenTokenValue == '+':
                         #refactor
-                        node = MyNode(currenTokenValue, self._tokens[0].getValue())
-                        eva = MyEvaluator(node)
+                        self._node = MyNode(currenTokenValue, self._tokens[0].getValue())
+                        eva = MyEvaluator(self._node)
                         return eva.getResult()
                     
                     else:
@@ -152,14 +184,14 @@ class MyParser:
 if __name__ == '__main__':
 
     # Testing automatically using doctest module.
-    import doctest
-    doctest.testmod()
+    #import doctest
+    #doctest.testmod()
 
     # Creating some examples:
     from myTokenizer import MyTokenizer
     
     # Performing some tests
-    #tkz = MyTokenizer('+ 1 2')
+    tkz = MyTokenizer('+ 1 2')
     #tkz = MyTokenizer('- 1 2')
     #tkz = MyTokenizer('- 2 1')
     #tkz = MyTokenizer('* 2 3')
@@ -206,11 +238,13 @@ if __name__ == '__main__':
     #tkz = MyTokenizer('+11111')
     #tkz = MyTokenizer('+111111')
     #tkz = MyTokenizer('+1111111')
-    tkz = MyTokenizer('+1111111111')
+    #tkz = MyTokenizer('+1111111111')
     
     tokens = tkz.getListOfTokens()
     psr = MyParser(tokens)
     result = psr.getResult()
     print('Result: ', result)
+
+    print(psr)
     
   
