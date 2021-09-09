@@ -14,8 +14,10 @@ from myNode import MyNode
 class MyEvaluator:
     '''An evaluator.'''
 
+    # Docstring?
     def __init__(self, node):
-
+        '''(MyEvaluator) -> NoneType'''
+        
         self._node = node
         self._result = 0
 
@@ -23,12 +25,13 @@ class MyEvaluator:
     #def __str__(self):
         
 
+    # Docstring?
     def _performOperation(self):
-
+        '''(MyEvaluator) -> NoneType'''
 
         if self._node.getRightOperand() == None:
 
-            #helper function for one single number
+            # Refactor: helper function
             if self._node.getOperator() == '+':
                 self._result = (2 * int(self._node.getLeftOperand()))
 
@@ -42,10 +45,10 @@ class MyEvaluator:
                 self._result = (int(self._node.getLeftOperand()) / int(self._node.getLeftOperand()))
 
         else:
-            
+
+            # Refactor: helper function
             if self._node.getOperator() == '+':
                 self._result = self._node.getLeftOperand() + self._node.getRightOperand()
-                #print(self._result)
 
             elif self._node.getOperator() == '-':
                 self._result = self._node.getLeftOperand() - self._node.getRightOperand()
@@ -57,66 +60,18 @@ class MyEvaluator:
                 self._result = self._node.getLeftOperand() / self._node.getRightOperand()
 
 
+    # Docstring?
     def getResult(self):
+        '''(MyEvaluator) -> int'''
 
         self._performOperation()
 
-        stringResult = str(self._result)
-        newStr = ''
-        
-        if len(stringResult) < 4:
-            return self._result
+        return self._result
 
-        else:
-            #i = 0
-            #while i < len(stringResult):
-                
-            for i in range(0, len(stringResult)):
-                #newStr = stringResult[i]
-                newStr += stringResult[i]
 
-                if i % 3 == 0 and i < len(stringResult) - 1:
-                    newStr = newStr + ','
-                        
-##                    for j in range(i):
-##                        newStr = stringResult[i]
-##                    newStr
-##                    
-##                    #while i < len(stringResult):
-##                        #for j in range(i+1,i+3):
-##                     
-##                            newStr = stringResult[-j] + newStr
-##                    newStr = ',' + newStr
-##
-##                    self._result = newStr
-                
-            return newStr   
-    
+# The following segment is executed if this file is to be run.
+if __name__ == '__main__':
 
-##        self._performOperation()
-##
-##        if len(str(self._result)) < 4:
-##            return self._result
-##        
-##        else: # Atention: Evaluator return an int! This development should take place in the Interpreter(main).
-##            
-##            stringResult = str(self._result)
-##            print(stringResult)
-##            stringLength = len(stringResult)
-##            newStr = ''
-##            for i in range(1, stringLength + 1, 3):
-##                #print(i)
-##                #print(stringResult[-i])
-##                #newStr = stringResult[-i] + ',' + newStr
-##                newStr = stringResult[-i] + ',' + newStr
-##                while i < len(stringResult):
-##                    for j in range(i+1,i+3):
-##                        #print(j)
-##                        newStr = stringResult[-j] + newStr
-##                    newStr = ',' + newStr
-##
-##            self._result = newStr
-##
-##        return self._result
-
-        
+    # Testing automatically using doctest module.
+    import doctest
+    doctest.testmod()
