@@ -8,8 +8,6 @@
 # This module defines the MyNode class.
 #
 
-OPERATOR, LOPERAND, ROPERAND = 'OPERATOR', 'LOPERAND', 'ROPERAND'
-
 class MyNode:
     '''A node.'''
 
@@ -41,10 +39,17 @@ class MyNode:
         >>> str(node)
         'Node {Operator: +, Left value: 1, Right value: 2}'
         '''
+        
+        if self._rightOpd != None:
+
+            return 'Node {Operator: ' + self._operator + ', ' + 'Left value: ' + str(self._leftOpd) \
+                   + ', Right value: ' + str(self._rightOpd) + '}'
+        else:
+            return 'Node {Operator: ' + self._operator + ', ' + 'Value: ' + str(self._leftOpd) + '}'
 
         # Improve this for operations involving only one number
-        return 'Node {Operator: ' + self._operator + ', ' + 'Left value: ' + str(self._leftOpd) \
-               + ', Right value: ' + str(self._rightOpd) + '}'
+        #return 'Node {Operator: ' + self._operator + ', ' + 'Left value: ' + str(self._leftOpd) \
+        #      + ', Right value: ' + str(self._rightOpd) + '}'
 
 
     def getOperator(self):
@@ -93,11 +98,11 @@ if __name__ == '__main__':
     import doctest
     doctest.testmod()
 
-    # Creating some examples
+    # Creating some examples:
     # With two leafs
     #node = MyNode('+', 1, 2)
 
     # With only one leaf
-    #node = MyNode('+', 2)
+    node = MyNode('+', 2)
     
     print(node)
