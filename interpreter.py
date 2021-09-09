@@ -56,18 +56,22 @@ def main():
         result = str(result)
         formattedResult = ''
 
+        # My attempt of inserting commas.
+        # Not working?!
         # Helper function?
-        if len(result) < 4:
-            print(result)
-            
-        else:
-            for i in range(0, len(result)):
-                formattedResult += result[i]
-                
-                if i%3 == 0 and i < len(result) - 1:
-                    formattedResult += ','
+        #if len(result) < 4:
+        #    print(result)
+        #    
+        #else:
+        #    for i in range(0, len(result)):
+        #        formattedResult += result[i]
+        #        
+        #        if i%3 == 0 and i < len(result) - 1:
+        #            formattedResult += ','
+        #
+        #    print(result)
 
-            print(result)
+        print(result)
 
         userInput = input(">>> ")
 
