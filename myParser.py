@@ -10,6 +10,7 @@
 
 from myNode import MyNode
 from myEvaluator import MyEvaluator
+from myTokenizer import MyTokenizer
 
 class MyParser:
     '''A parser.'''
@@ -32,10 +33,9 @@ class MyParser:
         >>> tkz = MyTokenizer('+ 1 2')
         >>> tokens = tkz.getListOfTokens()
         >>> psr = MyParser(tokens)
+        >>> result = psr.getResult()
         >>> print(psr)
-        Parent: '+'
-        Child: 1
-        Child: 2
+        [] -> Parser -> [['+', 1, 2]]
         '''
 
         lst = []
@@ -170,7 +170,17 @@ class MyParser:
  
 
     def getResult(self):
-        '''(MyParser) -> int'''
+        '''(MyParser) -> int
+
+        Return the result of the expression.
+
+        >>> tkz = MyTokenizer('+ 1 2')
+        >>> tokens = tkz.getListOfTokens()
+        >>> psr = MyParser(tokens)
+        >>> result = psr.getResult()
+        >>> print(result)
+        3
+        '''
 
         self._result = self._getExpression() # I could return this directly.
         
@@ -181,8 +191,8 @@ class MyParser:
 if __name__ == '__main__':
 
     # Testing automatically using doctest module.
-    #import doctest
-    #doctest.testmod()
+    import doctest
+    doctest.testmod()
 
     # Creating some examples:
     from myTokenizer import MyTokenizer
@@ -239,10 +249,10 @@ if __name__ == '__main__':
 
     # Str repr
     #tkz = MyTokenizer('+11')
-    #tkz = MyTokenizer('+ 1 2')
+    tkz = MyTokenizer('+ 1 2')
     #tkz = MyTokenizer('+ 11 22')
     #tkz = MyTokenizer('* 2 2')
-    tkz = MyTokenizer('+ (* 2 2) (* 2 3)')
+    #tkz = MyTokenizer('+ (* 2 2) (* 2 3)')
     
     
     tokens = tkz.getListOfTokens()
