@@ -41,7 +41,10 @@ class MyParser:
         lst = []
  
         for node in self._nodes:
-            lst.append([node.getOperator(), node.getLeftOperand(), node.getRightOperand()])
+            if node.getRightOperand() != None:
+                lst.append([node.getOperator(), node.getLeftOperand(), node.getRightOperand()])
+            else:
+                lst.append([node.getOperator(), node.getLeftOperand()])
 
         return str(self._tokens) + ' -> Parser -> ' + str(lst)
 
@@ -66,12 +69,14 @@ class MyParser:
                     if currenTokenValue == '+':
                         #refactor
                         node = MyNode(currenTokenValue, self._tokens[0].getValue())
-                        self._nodes.append(node1)
+                        self._tokens.pop(0)
+                        self._nodes.append(node)
                         eva = MyEvaluator(node)
                         return eva.getResult()
                     
                     else:
                         node = MyNode(currenTokenValue, self._tokens[0].getValue())
+                        self._tokens.pop(0)
                         self._nodes.append(node)
                         eva = MyEvaluator(node)
                         return eva.getResult()
@@ -118,12 +123,14 @@ class MyParser:
 
                     if currenTokenValue == '*':
                         node = MyNode(currenTokenValue, self._tokens[0].getValue())
+                        self._tokens.pop(0)
                         self._nodes.append(node)
                         eva = MyEvaluator(node)
                         return eva.getResult()
                     
                     else:
                         node = MyNode(currenTokenValue, self._tokens[0].getValue())
+                        self._tokens.pop(0)
                         self._nodes.append(node)
                         eva = MyEvaluator(node)
                         return eva.getResult()
@@ -249,11 +256,10 @@ if __name__ == '__main__':
 
     # Str repr
     #tkz = MyTokenizer('+11')
-    tkz = MyTokenizer('+ 1 2')
+    #tkz = MyTokenizer('+ 1 2')
     #tkz = MyTokenizer('+ 11 22')
     #tkz = MyTokenizer('* 2 2')
-    #tkz = MyTokenizer('+ (* 2 2) (* 2 3)')
-    
+    tkz = MyTokenizer('+ (* 2 2) (* 2 3)')
     
     tokens = tkz.getListOfTokens()
     psr = MyParser(tokens)
