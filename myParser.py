@@ -10,6 +10,7 @@
 
 from myNode import MyNode
 from myEvaluator import MyEvaluator
+#from myToken import MyToken
 
 class MyParser:
     '''A parser.'''
@@ -20,11 +21,10 @@ class MyParser:
 
         self._tokens = tokens # list of obj of type token
         self._result = 0
-        self._node = MyNode(None, None)
-
-    #def __str__():
+        self._nodes = []
 
 
+    # I don't understand the result!
     def __str__(self):
         '''(MyParser) -> str
 
@@ -34,27 +34,47 @@ class MyParser:
         >>> tokens = tkz.getListOfTokens()
         >>> psr = MyParser(tokens)
         >>> print(psr)
-        ['+', '1', '2'] -> Parser -> ('+', 1, 2)
+        Parent: '+'
+        Child: 1
+        Child: 2
         '''
 
-        tokensList = []
-        for tk in self._tokens:
-            lst.append(tk.getValue())
+        lst = [] # next: lst of lst
 
-        #nodeValues = []
-        #for value in node:
-        #    nodeValues.append(value.getValue())
-        #tpl = tuple(nodeValues)
+        #if 
 
-        tpl = (self._node.self.getOperator(), self._node.self.getOperand(), self._node.self.getOperand())
-        def ast(node):
-            '''(tuple) -> str '''
+        for node in self._nodes:
+            #lst.append('Parent: ' + node.getOperator())
+            #lst.append('Child: ' + str(node.getLeftOperand()))
+            #lst.append('Child: ' + str(node.getRightOperand()))
+
+            lst.append(node.getOperator())
+            lst.append(str(node.getLeftOperand()))
+            lst.append(str(node.getRightOperand()))
+
+        #return str(lst)
+
+        return 'Parent: ' + lst[0] + '\n' + \
+               'Child: ' + lst[1] + '\n' + \
+               'Child: ' + lst[2]
             
-            print('   ', node[0])
-            print('  /' + '   \\')
-            print(str(node[1]) + '       ' + str(node[2]))
-        
-        return '\'' + str(lst) + '\' -> Parser -> ' + ast(tpl)
+
+##        '''(MyParser) -> str
+##
+##        Return a string representation of the parser.
+##
+##        >>> tkz = MyTokenizer('+ 1 2')
+##        >>> tokens = tkz.getListOfTokens()
+##        >>> psr = MyParser(tokens)
+##        >>> print(psr)
+##        ['+', '1', '2'] -> Parser -> '?'
+##        '''
+##
+##        tokensList = []
+##        for tk in self._tokens:
+##            tokensList.append(tk.getValue())
+##        
+##        return '\'' + str(tokensList) + '\' -> Parser -> ' + '?'
 
 
     # Docstring?
@@ -77,6 +97,7 @@ class MyParser:
                     if currenTokenValue == '+':
                         #refactor
                         self._node = MyNode(currenTokenValue, self._tokens[0].getValue())
+                        self._nodes.append(self._node)
                         eva = MyEvaluator(self._node)
                         return eva.getResult()
                     
@@ -191,7 +212,7 @@ if __name__ == '__main__':
     from myTokenizer import MyTokenizer
     
     # Performing some tests
-    tkz = MyTokenizer('+ 1 2')
+    #tkz = MyTokenizer('+ 1 2')
     #tkz = MyTokenizer('- 1 2')
     #tkz = MyTokenizer('- 2 1')
     #tkz = MyTokenizer('* 2 3')
@@ -239,6 +260,9 @@ if __name__ == '__main__':
     #tkz = MyTokenizer('+111111')
     #tkz = MyTokenizer('+1111111')
     #tkz = MyTokenizer('+1111111111')
+
+    # Str repr
+    tkz = MyTokenizer('+11')
     
     tokens = tkz.getListOfTokens()
     psr = MyParser(tokens)
