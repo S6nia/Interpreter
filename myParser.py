@@ -22,7 +22,6 @@ class MyParser:
         self._result = 0
         self._nodes = []
         self._tokensConsummed = [] # I'll leave it for later, if I decide to show the tokens consumed in the str repr.
-        #self._test = []
 
     
     def __str__(self):
@@ -45,23 +44,6 @@ class MyParser:
             lst.append([node.getOperator(), node.getLeftOperand(), node.getRightOperand()])
 
         return str(self._tokens) + ' -> Parser -> ' + str(lst)
-
-##            for node in self._nodes:
-##                if node.getRightOperand() != None:
-##                    lst.append(node.getOperator())
-##                    lst.append(str(node.getLeftOperand()))
-##                    lst.append(str(node.getRightOperand()))
-##
-##                    return 'Parent: ' + lst[0] + '\n' + \
-##                           'Child: ' + lst[1] + '\n' + \
-##                           'Child: ' + lst[2] 
-##
-##                else:
-##                    lst.append(node.getOperator())
-##                    lst.append(str(node.getLeftOperand()))
-##
-##                    return 'Parent: ' + lst[0] + '\n' + \
-##                           'Child: ' + lst[1] + '\n'
 
 
     # Docstring?
@@ -100,7 +82,6 @@ class MyParser:
                 
                 if currenTokenValue == '+':
                     node = MyNode(currenTokenValue, value1, value2)
-                    #self._test.append('a + node')
                     self._nodes.append(node)
                     eva = MyEvaluator(node)
                     result =  eva.getResult()
@@ -153,7 +134,6 @@ class MyParser:
 
                 if currenTokenValue == '*':
                     node = MyNode(currenTokenValue, value1, value2)
-                    #self._test.append('a * node')
                     self._nodes.append(node)
                     eva = MyEvaluator(node)
                     result =  eva.getResult()
@@ -193,8 +173,6 @@ class MyParser:
         '''(MyParser) -> int'''
 
         self._result = self._getExpression() # I could return this directly.
-        
-        #print(self._test)
         
         return self._result
 
