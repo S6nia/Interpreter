@@ -10,7 +10,6 @@
 
 from myNode import MyNode
 from myEvaluator import MyEvaluator
-#from myToken import MyToken
 
 class MyParser:
     '''A parser.'''
@@ -22,9 +21,10 @@ class MyParser:
         self._tokens = tokens # list of obj of type token
         self._result = 0
         self._nodes = []
+        self._tokensConsummed = [] # I'll leave it for later, if I decide to show the tokens consumed in the str repr.
+        #self._test = []
 
-
-    # I don't understand the result!
+    
     def __str__(self):
         '''(MyParser) -> str
 
@@ -39,42 +39,29 @@ class MyParser:
         Child: 2
         '''
 
-        lst = [] # next: lst of lst
-
-        #if 
-
+        lst = []
+ 
         for node in self._nodes:
-            #lst.append('Parent: ' + node.getOperator())
-            #lst.append('Child: ' + str(node.getLeftOperand()))
-            #lst.append('Child: ' + str(node.getRightOperand()))
+            lst.append([node.getOperator(), node.getLeftOperand(), node.getRightOperand()])
 
-            lst.append(node.getOperator())
-            lst.append(str(node.getLeftOperand()))
-            lst.append(str(node.getRightOperand()))
+        return str(self._tokens) + ' -> Parser -> ' + str(lst)
 
-        #return str(lst)
-
-        return 'Parent: ' + lst[0] + '\n' + \
-               'Child: ' + lst[1] + '\n' + \
-               'Child: ' + lst[2]
-            
-
-##        '''(MyParser) -> str
+##            for node in self._nodes:
+##                if node.getRightOperand() != None:
+##                    lst.append(node.getOperator())
+##                    lst.append(str(node.getLeftOperand()))
+##                    lst.append(str(node.getRightOperand()))
 ##
-##        Return a string representation of the parser.
+##                    return 'Parent: ' + lst[0] + '\n' + \
+##                           'Child: ' + lst[1] + '\n' + \
+##                           'Child: ' + lst[2] 
 ##
-##        >>> tkz = MyTokenizer('+ 1 2')
-##        >>> tokens = tkz.getListOfTokens()
-##        >>> psr = MyParser(tokens)
-##        >>> print(psr)
-##        ['+', '1', '2'] -> Parser -> '?'
-##        '''
+##                else:
+##                    lst.append(node.getOperator())
+##                    lst.append(str(node.getLeftOperand()))
 ##
-##        tokensList = []
-##        for tk in self._tokens:
-##            tokensList.append(tk.getValue())
-##        
-##        return '\'' + str(tokensList) + '\' -> Parser -> ' + '?'
+##                    return 'Parent: ' + lst[0] + '\n' + \
+##                           'Child: ' + lst[1] + '\n'
 
 
     # Docstring?
@@ -96,13 +83,14 @@ class MyParser:
                     
                     if currenTokenValue == '+':
                         #refactor
-                        self._node = MyNode(currenTokenValue, self._tokens[0].getValue())
-                        self._nodes.append(self._node)
-                        eva = MyEvaluator(self._node)
+                        node = MyNode(currenTokenValue, self._tokens[0].getValue())
+                        self._nodes.append(node1)
+                        eva = MyEvaluator(node)
                         return eva.getResult()
                     
                     else:
                         node = MyNode(currenTokenValue, self._tokens[0].getValue())
+                        self._nodes.append(node)
                         eva = MyEvaluator(node)
                         return eva.getResult()
                     
@@ -112,11 +100,14 @@ class MyParser:
                 
                 if currenTokenValue == '+':
                     node = MyNode(currenTokenValue, value1, value2)
+                    #self._test.append('a + node')
+                    self._nodes.append(node)
                     eva = MyEvaluator(node)
                     result =  eva.getResult()
                     
                 else:
                     node = MyNode(currenTokenValue, value1, value2)
+                    self._nodes.append(node)
                     eva = MyEvaluator(node)
                     result =  eva.getResult()
 
@@ -146,11 +137,13 @@ class MyParser:
 
                     if currenTokenValue == '*':
                         node = MyNode(currenTokenValue, self._tokens[0].getValue())
+                        self._nodes.append(node)
                         eva = MyEvaluator(node)
                         return eva.getResult()
                     
                     else:
                         node = MyNode(currenTokenValue, self._tokens[0].getValue())
+                        self._nodes.append(node)
                         eva = MyEvaluator(node)
                         return eva.getResult()
                  
@@ -160,11 +153,14 @@ class MyParser:
 
                 if currenTokenValue == '*':
                     node = MyNode(currenTokenValue, value1, value2)
+                    #self._test.append('a * node')
+                    self._nodes.append(node)
                     eva = MyEvaluator(node)
                     result =  eva.getResult()
                     
                 else:
                     node = MyNode(currenTokenValue, value1, value2)
+                    self._nodes.append(node)
                     eva = MyEvaluator(node)
                     result =  eva.getResult()
 
@@ -197,6 +193,8 @@ class MyParser:
         '''(MyParser) -> int'''
 
         self._result = self._getExpression() # I could return this directly.
+        
+        #print(self._test)
         
         return self._result
 
@@ -262,13 +260,21 @@ if __name__ == '__main__':
     #tkz = MyTokenizer('+1111111111')
 
     # Str repr
-    tkz = MyTokenizer('+11')
+    #tkz = MyTokenizer('+11')
+    #tkz = MyTokenizer('+ 1 2')
+    #tkz = MyTokenizer('+ 11 22')
+    #tkz = MyTokenizer('* 2 2')
+    tkz = MyTokenizer('+ (* 2 2) (* 2 3)')
+    
     
     tokens = tkz.getListOfTokens()
     psr = MyParser(tokens)
     result = psr.getResult()
-    print('Result: ', result)
+
+    print('Result: ' + str(result) + '\n')
 
     print(psr)
+
+    
     
   
