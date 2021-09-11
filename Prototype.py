@@ -1,21 +1,13 @@
-# Sonia da Trindade
-# 24 07 21
+# Name: Sonia Gonçalves
+# Program: IT MSc
+# ST ID: 
+# Date: 24 07 21
 
-# This is an interpreter.
-# This is the main file of this program.
 
-# Main
-# Token class
-# Tokenizer
-# Node class
-# Parser
-# Evaluator
-# Test files for each 
-
-# Documentation: Comments, docstring
-# Validations and error handling
-# Testing
-
+##
+# This program obtains an input from the user.
+# Then it calculates the sum of two or more numbers.
+#
 
 def main():
     '''
@@ -33,7 +25,6 @@ def main():
     while userInput.upper() != 'Q':
             
         tokens = tokenize(userInput)
-        #print(tokens)
 
         if len(tokens) != 0:
             addition = 0
@@ -49,12 +40,9 @@ def main():
 
         userInput = input(">>> ")
 
-        #parse(tokens)
-
     print("The program has exited.")
     
 
-# Comment here what this function does (remember, not how it does!)
 def tokenize(userInput):
     '''(str) -> list of strings (tokens)
 
@@ -87,7 +75,6 @@ def tokenize(userInput):
     else:
         print("Expected format: op arg1 arg2...arg(n). Please use white spaces between the units.")
         
-
     return tokens
 
     
