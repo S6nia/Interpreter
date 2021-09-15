@@ -76,7 +76,7 @@ def main():
                         print("Welcome back!")
                         #userInput = input(">>> ")
 
-        except IOError:
+        except EOFError:
             print("Error: Empty input was unexpected.")
 
 
