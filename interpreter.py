@@ -44,48 +44,65 @@ def main():
     print("Please follow the Polish notation, e.g. '+ 2 3' or '+ 2 (* 1 3)'.")
     print("(Enter the key 'Q' to exit the program)\n")
     
-    userInput = input(">>> ")
+    flag = True
 
-    while userInput.upper() != 'Q':
-            
-        tk = MyTokenizer(userInput)
-        tokens = tk.getListOfTokens()
-        psr = MyParser(tokens)
-        
-        result = psr.getResult()
-        result = str(result)
-        formattedResult = ''
+    while flag:
 
-        # My attempt of inserting commas.
-        # Not working?!
-        # Helper function?
-        #if len(result) < 4:
-        #    print(result)
-        #    
-        #else:
-        #    for i in range(0, len(result)):
-        #        formattedResult += result[i]
-        #        
-        #        if i%3 == 0 and i < len(result) - 1:
-        #            formattedResult += ','
-        #
-        #    print(result)
+        try:
+            # Prompt user for inserting an expression
+            userInput = input(">>> ")
 
-        print(result)
+            # Checking the input
+            if userInput.upper() != 'Q':
 
-        userInput = input(">>> ")
+                # Process input
+                tk = MyTokenizer(userInput)
+                tokens = tk.getListOfTokens()
+                psr = MyParser(tokens)
+                result = psr.getResult()
+                print(result)
 
-        # Helper function?
-        if userInput.upper() == 'Q':
-            userInputExit = input("Are you sure you want to quit the program? Y/N: ")
-
-            if userInputExit.upper() == 'Y':
-                print("The program has exited.")
             else:
-                print("")
-                print("Welcome back!")
-                userInput = input(">>> ")
 
+                # Helper function?
+                if userInput.upper() == 'Q':
+                    userInputExit = input("Are you sure you want to quit the program? Y/N: ")
+
+                    if userInputExit.upper() == 'Y':
+                        flag = False
+                        print("The program has exited.")
+                    else:
+                        print("")
+                        print("Welcome back!")
+                        #userInput = input(">>> ")
+
+        except IOError:
+            print("Error: Empty input was unexpected.")
+
+
+##    userInput = input(">>> ")
+##
+##    while userInput.upper() != 'Q':
+##            
+##        tk = MyTokenizer(userInput)
+##        tokens = tk.getListOfTokens()
+##        psr = MyParser(tokens)
+##        result = psr.getResult()
+##        print(result)
+##
+##        userInput = input(">>> ")
+##
+##        # Helper function?
+##        if userInput.upper() == 'Q':
+##            userInputExit = input("Are you sure you want to quit the program? Y/N: ")
+##
+##            if userInputExit.upper() == 'Y':
+##                print("The program has exited.")
+##            else:
+##                print("")
+##                print("Welcome back!")
+##                userInput = input(">>> ")
+                
 
 if __name__ == '__main__':
 
