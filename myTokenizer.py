@@ -22,9 +22,8 @@ class MyTokenizer:
         '''(MyTokenizer, str) -> NoneType'''
 
         self._input = userInput # Input: stream of chars (str)
-        #self._pos = 0
-        #self._currentChar = self._input[self._pos]
-        self._currentChar = ''
+        self._pos = 0
+        self._currentChar = self._input[self._pos]
         self._output = [] # Output: stream of lexemes/tokens (list of str)
 
 
@@ -50,15 +49,9 @@ class MyTokenizer:
     def _creaTokens(self):
         '''(Tokenizer) -> NoneType'''
 
-        #print(self._input)
-
-        if self._input == ' ':
-            raise EOFError()
-
-        #for self._pos in range(len(self._input)):
-        for i in range(len(self._input)):
+        for self._pos in range(len(self._input)):
     
-            self._currentChar = self._input[i]
+            self._currentChar = self._input[self._pos]
             
             if self._currentChar.isspace():
                continue # this statement returns the control to the beginning of the while loop :) 
@@ -66,33 +59,33 @@ class MyTokenizer:
             else:
 
                 if self._currentChar == '+':
-                    tk = MyToken(PLUS, '+', i)
+                    tk = MyToken(PLUS, '+', self._pos)
                     self._output.append(tk)
                 
                 elif self._currentChar == '-':
-                    tk = MyToken(MINUS, '-', i)
+                    tk = MyToken(MINUS, '-', self._pos)
                     self._output.append(tk)
 
                 elif self._currentChar == '*':
-                    tk = MyToken(MULT, '*', i)
+                    tk = MyToken(MULT, '*', self._pos)
                     self._output.append(tk)
 
                 elif self._currentChar == '/':
-                    tk = MyToken(DIV, '/', i)
+                    tk = MyToken(DIV, '/', self._pos)
                     self._output.append(tk)
 
                 elif self._currentChar == '(':
-                    tk = MyToken(LPARENT, '(', i)
+                    tk = MyToken(LPARENT, '(', self._pos)
                     self._output.append(tk)
 
                 elif self._currentChar == ')':
-                    tk = MyToken(RPARENT, ')', i)
+                    tk = MyToken(RPARENT, ')', self._pos)
                     self._output.append(tk)
 
                 elif self._currentChar.isdigit():
 
                     if not self._input[self._pos - 1].isdigit():
-                        tk = MyToken(INT, self._currentChar, i)
+                        tk = MyToken(INT, self._currentChar, self._pos)
                         self._output.append(tk)
                         
                     else:
@@ -102,7 +95,9 @@ class MyTokenizer:
                 else:
                     # needs to be improved based on the info attached to the char.
                     # to give more info to the user.
-                    print("Invalid character in the position: ", i)
+                    #print("Invalid character in the position: ", self._pos)
+                    raise ValueError("Invalid value in the position " + str(self._pos) \
+                                     + ".\nExpected values: +, -, *, /, (, ), and digits.")
                                                 
 
 

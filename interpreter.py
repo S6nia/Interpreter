@@ -52,32 +52,74 @@ def main():
             # Prompt user for inserting an expression
             userInput = input(">>> ")
 
-            # Checking the input
-            if userInput.upper() != 'Q':
+        except IOError:
+            #print("Could not perform calculations on an empty input.")
+            break
 
-                # Process input
-                tk = MyTokenizer(userInput)
-                tokens = tk.getListOfTokens()
-                psr = MyParser(tokens)
-                result = psr.getResult()
-                print(result)
+        except ValueError as error :
+            print("Error: ", str(error))
 
-            else:
+        if not userInput:
+            continue
 
-                # Helper function?
-                if userInput.upper() == 'Q':
-                    userInputExit = input("Are you sure you want to quit the program? Y/N: ")
+        # Checking the input
+        if userInput.upper() != 'Q':
 
-                    if userInputExit.upper() == 'Y':
-                        flag = False
-                        print("The program has exited.")
-                    else:
-                        print("")
-                        print("Welcome back!")
-                        #userInput = input(">>> ")
+            # Process input
+            tk = MyTokenizer(userInput)
+            tokens = tk.getListOfTokens()
+            psr = MyParser(tokens)
+            result = psr.getResult()
+            print(result)
 
-        except EOFError:
-            print("Error: Empty input was unexpected.")
+        else:
+
+            # Helper function?
+            if userInput.upper() == 'Q':
+                userInputExit = input("Are you sure you want to quit the program? Y/N: ")
+
+                if userInputExit.upper() == 'Y':
+                    flag = False
+                    print("The program has exited.")
+                else:
+                    print("")
+                    print("Welcome back!")
+                    
+
+##    flag = True
+##
+##    while flag:
+##
+##        try:
+##            # Prompt user for inserting an expression
+##            userInput = input(">>> ")
+##
+##            # Checking the input
+##            if userInput.upper() != 'Q':
+##
+##                # Process input
+##                tk = MyTokenizer(userInput)
+##                tokens = tk.getListOfTokens()
+##                psr = MyParser(tokens)
+##                result = psr.getResult()
+##                print(result)
+##
+##            else:
+##
+##                # Helper function?
+##                if userInput.upper() == 'Q':
+##                    userInputExit = input("Are you sure you want to quit the program? Y/N: ")
+##
+##                    if userInputExit.upper() == 'Y':
+##                        flag = False
+##                        print("The program has exited.")
+##                    else:
+##                        print("")
+##                        print("Welcome back!")
+##                        #userInput = input(">>> ")
+##
+##        except EOFError:
+##            print("Error: Empty input was unexpected.")
 
 
 ##    userInput = input(">>> ")
