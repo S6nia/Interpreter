@@ -24,7 +24,8 @@ class MyParser:
         self._nodes = []
         self._tokensConsummed = [] # I'll leave it for later, if I decide to show the tokens consumed in the str repr.
 
-    
+
+    # Docstring!
     def __str__(self):
         '''(MyParser) -> str
 
@@ -100,6 +101,13 @@ class MyParser:
             elif currenTokenValue == '*' or currenTokenValue == '/':
                 result = self._getTerm()
 
+            elif currenTokenValue.isdigit():
+                raise SyntaxError("Unexpected digit: " + "'" + str(currenTokenValue) + "'" \
+                                  + ". An operator is expected.")
+            
+            elif currenTokenValue == '(' or currenTokenValue == ')':
+                raise SyntaxError("Unexpected parenthesis: " + "'" + str(currenTokenValue) + "'")
+            
             else:
                 done = True
         
@@ -163,19 +171,83 @@ class MyParser:
     def _getFactor(self):
         '''(MyParser) -> int'''
 
+
         token = self._tokens.pop(0)
         tokenValue = token.getValue()
 
         if tokenValue == '(':
             result = self._getExpression()
-            self._tokens.pop(0)
+            if len(self._tokens)!= 0:
+                self._tokens.pop(0)
+            else:
+                raise SyntaxError("A right parenthesis ')' was expected.")
             
-        else:
+        elif tokenValue.isdigit():
             result = tokenValue
 
-        return result
- 
+        else:
+            if not tokenValue.isdigit():
+                raise SyntaxError("Unexpected operator: " + "'" + str(tokenValue) + "'" \
+                                  + ". A digit is expected.")
 
+        return result
+
+
+##        try:
+##            token = self._tokens.pop(0)
+##            tokenValue = token.getValue()
+##
+##            if tokenValue == '(':
+##                result = self._getExpression()
+##                self._tokens.pop(0)
+##            
+##            else:
+##                result = tokenValue
+##
+##            return result
+##
+##        except ValueError:
+##            print("Something went wrong.")
+
+
+##        token = self._tokens.pop(0)
+##        tokenValue = token.getValue()
+##
+##        if tokenValue == '(':
+##            result = self._getExpression()
+##            if len(self._tokens)!= 0:
+##                self._tokens.pop(0)
+##            else:
+##                raise SyntaxError("A right parenthesis ')' was expected.")
+##            
+##        elif tokenValue.isdigit():
+##            result = tokenValue
+##
+##        else:
+##            if not tokenValue.isdigit():
+##                raise SyntaxError("Unexpected operator: " + "'" + str(tokenValue) + "'" \
+##                                  + ". A digit is expected.")
+##            else:
+##                raise SyntaxError("Unexpected digit: " + "'" + str(tokenValue) + "'" \
+##                                  + ". An operator is expected.")
+##
+##        return result
+
+
+##        token = self._tokens.pop(0)
+##        tokenValue = token.getValue()
+##
+##        if tokenValue == '(':
+##            result = self._getExpression()
+##            self._tokens.pop(0)
+##            
+##        else:
+##            result = tokenValue
+##
+##        return result
+    
+ 
+    # Docstring!
     def getResult(self):
         '''(MyParser) -> int
 

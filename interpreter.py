@@ -41,7 +41,7 @@ def main():
 
     #print(colored("Calculator AbaCactus :)\n", 'green'))
     print("Calculator AbaCactus :)\n")
-    print("Please follow the Polish notation, e.g. '+ 2 3' or '+ 2 (* 1 3)'.")
+    print("Please follow the Polish Notation, e.g. '+ 2 3' or '+ 2 (* 1 3)'.")
     print("(Enter the key 'Q' to exit the program)\n")
     
     flag = True
@@ -56,8 +56,14 @@ def main():
             #print("Could not perform calculations on an empty input.")
             break
 
-        except ValueError as error :
+        except ValueError as error:
             print("Error: ", str(error))
+
+        except SyntaxError as error:
+            print("Error: ", str(error))
+
+        except Exception as exceptObj:
+            print("Error:", str(exceptObj))
 
         if not userInput:
             continue
