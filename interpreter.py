@@ -62,6 +62,9 @@ def main():
         except SyntaxError as error:
             print("Error: ", str(error))
 
+        except ZeroDivisionError as error:
+            print("Error: ", str(error))
+
         except Exception as exceptObj:
             print("Error:", str(exceptObj))
 

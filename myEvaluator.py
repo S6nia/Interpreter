@@ -62,6 +62,7 @@ class MyEvaluator:
             else:
                 self._result = (int(self._node.getLeftOperand()) / int(self._node.getLeftOperand()))
 
+
         else:
 
             # Refactor: helper function
@@ -75,8 +76,50 @@ class MyEvaluator:
                 self._result = self._node.getLeftOperand() * self._node.getRightOperand()
 
             else:
-                self._result = self._node.getLeftOperand() / self._node.getRightOperand()
 
+                if self._node.getRightOperand() != 0:
+                    self._result = self._node.getLeftOperand() / self._node.getRightOperand()
+                else:
+                    raise ZeroDivisionError("Zero division error ocurred.")
+                        
+
+
+##        else:
+##
+##            # Refactor: helper function
+##            if self._node.getOperator() == '+':
+##                self._result = self._node.getLeftOperand() + self._node.getRightOperand()
+##
+##            elif self._node.getOperator() == '-':
+##                self._result = self._node.getLeftOperand() - self._node.getRightOperand()
+##
+##            elif self._node.getOperator() == '*':
+##                self._result = self._node.getLeftOperand() * self._node.getRightOperand()
+##
+##            else:
+##
+##                try:
+##                    self._result = self._node.getLeftOperand() / self._node.getRightOperand()
+##
+##                except ZeroDivisionError:
+##                    print("Zero division error ocurred.")
+
+
+##        else:
+##
+##            # Refactor: helper function
+##            if self._node.getOperator() == '+':
+##                self._result = self._node.getLeftOperand() + self._node.getRightOperand()
+##
+##            elif self._node.getOperator() == '-':
+##                self._result = self._node.getLeftOperand() - self._node.getRightOperand()
+##
+##            elif self._node.getOperator() == '*':
+##                self._result = self._node.getLeftOperand() * self._node.getRightOperand()
+##
+##            else:
+##                self._result = self._node.getLeftOperand() / self._node.getRightOperand()
+                    
 
     def getResult(self):
         '''(MyEvaluator) -> int
