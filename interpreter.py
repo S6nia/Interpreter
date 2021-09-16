@@ -56,6 +56,9 @@ def main():
             #print("Could not perform calculations on an empty input.")
             break
 
+        #except ValueError:
+            #break
+
         except ValueError as error:
             print("Error: ", str(error))
 
@@ -74,12 +77,27 @@ def main():
         # Checking the input
         if userInput.upper() != 'Q':
 
-            # Process input
-            tk = MyTokenizer(userInput)
-            tokens = tk.getListOfTokens()
-            psr = MyParser(tokens)
-            result = psr.getResult()
-            print(result)
+            try:
+                # Process input
+                tk = MyTokenizer(userInput)
+                tokens = tk.getListOfTokens()
+                psr = MyParser(tokens)
+                result = psr.getResult()
+                print(result)
+
+            #except ValueError:
+                #break
+
+            except ValueError as error:
+                print("Error: ", str(error))
+                continue
+
+##            # Process input
+##            tk = MyTokenizer(userInput)
+##            tokens = tk.getListOfTokens()
+##            psr = MyParser(tokens)
+##            result = psr.getResult()
+##            print(result)
 
         else:
 
