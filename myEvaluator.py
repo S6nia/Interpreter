@@ -81,8 +81,48 @@ class MyEvaluator:
                     self._result = self._node.getLeftOperand() / self._node.getRightOperand()
                 else:
                     raise ZeroDivisionError("Zero division error ocurred.")
-                        
 
+
+##        else:
+##
+##            # Refactor: helper function
+##            if self._node.getOperator() == '+':
+##                self._result = self._node.getLeftOperand() + self._node.getRightOperand()
+##
+##            elif self._node.getOperator() == '-':
+##                self._result = self._node.getLeftOperand() - self._node.getRightOperand()
+##
+##            elif self._node.getOperator() == '*':
+##                self._result = self._node.getLeftOperand() * self._node.getRightOperand()
+##
+##            else:
+##
+##                try:
+##                    self._result = self._node.getLeftOperand() / self._node.getRightOperand()
+##
+##                except:
+##                   raise ZeroDivisionError("Zero division error ocurred.")
+
+
+##        else:
+##
+##            # Refactor: helper function
+##            if self._node.getOperator() == '+':
+##                self._result = self._node.getLeftOperand() + self._node.getRightOperand()
+##
+##            elif self._node.getOperator() == '-':
+##                self._result = self._node.getLeftOperand() - self._node.getRightOperand()
+##
+##            elif self._node.getOperator() == '*':
+##                self._result = self._node.getLeftOperand() * self._node.getRightOperand()
+##
+##            else:
+##
+##                if self._node.getRightOperand() != 0:
+##                    self._result = self._node.getLeftOperand() / self._node.getRightOperand()
+##                else:
+##                    raise ZeroDivisionError("Zero division error ocurred.")
+                        
 
 ##        else:
 ##
