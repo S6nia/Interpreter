@@ -18,11 +18,13 @@ class MyToken:
     def __init__(self, desc, value, index):
         '''(MyToken, str, str, int) -> Nonetype
 
-        >>> token = MyToken('INT', 2, 0)
+        Initializes the instance variables of token object, given the desc, value and index.
+
+        >>> token = MyToken('INT', '2', 0)
         >>> token.getType()
         'INT'
         >>> token.getValue()
-        2
+        '2'
         >>> token.getIndex()
         0
         '''
@@ -39,11 +41,11 @@ class MyToken:
 
         >>> token = MyToken('INT', '2', 0)
         >>> str(token)
-        'Token {type: INT, value: 2, index: 0}'
+        'Token {Type: INT, Value: 2, Index: 0}'
         '''
 
-        return 'Token {type: ' + self._type + ', ' + 'value: ' + self._value \
-               + ', index: ' + str(self._index) + '}'
+        return 'Token {Type: ' + self._type + ', ' + 'Value: ' + self._value \
+               + ', Index: ' + str(self._index) + '}'
 
 
     def setValue(self, value):
@@ -51,12 +53,12 @@ class MyToken:
 
         Updates the value of the instance variable self._value.
 
-        >>> token = MyToken('INT', 2, 0)
+        >>> token = MyToken('INT', '2', 0)
         >>> token.getValue()
-        2
-        >>> token.setValue(4)
+        '2'
+        >>> token.setValue('4')
         >>> token.getValue()
-        4
+        '4'
         '''
         
         self._value = value
@@ -67,7 +69,7 @@ class MyToken:
 
         Return the type of the token (INT, PLUS, MINUS, MULT, DIV, LPARENT, RPARENT).
 
-        >>> token = MyToken('INT', 2, 0)
+        >>> token = MyToken('INT', '2', 0)
         >>> token.getType()
         'INT'
         '''
@@ -80,9 +82,9 @@ class MyToken:
 
         Return the value of the token.
 
-        >>> token = MyToken('INT', 2, 0)
+        >>> token = MyToken('INT', '2', 0)
         >>> token.getValue()
-        2
+        '2'
         '''
         return self._value
 
@@ -92,7 +94,7 @@ class MyToken:
 
         Return the index of the position of the token in the input.
 
-        >>> token = MyToken('INT', 2, 0)
+        >>> token = MyToken('INT', '2', 0)
         >>> token.getIndex()
         0
         '''
@@ -107,7 +109,7 @@ if __name__ == '__main__':
     import doctest
     doctest.testmod()
 
-    # Creating some examples.
+    # Creating some examples:
     tk1 = MyToken(INT, '2', 0)
     tk2 = MyToken(PLUS, '+', 1)
 
