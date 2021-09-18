@@ -47,6 +47,7 @@ class MyEvaluator:
     def _performOperation(self):
         '''(MyEvaluator) -> NoneType'''
 
+        # In this block I need to convert to int because it is not converted in the MyParser class.
         if self._node.getRightOperand() == None:
 
             # Refactor: helper function
@@ -60,8 +61,13 @@ class MyEvaluator:
                 self._result = math.trunc(math.pow(int(self._node.getLeftOperand()), 2))
                 
             else:
-                self._result = (int(self._node.getLeftOperand()) / int(self._node.getLeftOperand()))
-
+                #self._result = (int(self._node.getLeftOperand()) / int(self._node.getLeftOperand()))
+                if int(self._node.getLeftOperand()) == 0:
+                    raise ZeroDivisionError("Zero division error ocurred.")
+                    #self._result = (int(self._node.getLeftOperand()) / int(self._node.getLeftOperand()))
+                else:
+                    #raise ZeroDivisionError("Zero division error ocurred.")
+                    self._result = (int(self._node.getLeftOperand()) / int(self._node.getLeftOperand()))
 
         else:
 
