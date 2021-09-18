@@ -71,7 +71,7 @@ class MyParser:
                 elif len(self._tokens) == 1:
 
                     if not self._tokens[0].getValue().isdigit():
-                        raise SyntaxError("Invalid expression.")
+                        raise SyntaxError("Invalid expression A.")
                     
                     if currenTokenValue == '+':
                         #refactor
@@ -90,11 +90,18 @@ class MyParser:
                     
                 else:
 
-                    if not self._tokens[0].getValue().isdigit():
-                        raise SyntaxError("Invalid expression.")
+                    if self._tokens[0].getValue().isdigit() or self._tokens[0].getValue() == '(':
+                        value1 = int(self._getFactor())
+                        value2 = int(self._getFactor())
+                        
+                    else:
+                        raise SyntaxError("Invalid expression B.")
 
-                    value1 = int(self._getFactor())
-                    value2 = int(self._getFactor())
+##                    if not self._tokens[0].getValue().isdigit() or not self._tokens[0].getValue() == '(':
+##                        raise SyntaxError("Invalid expression B.")
+##
+##                    value1 = int(self._getFactor())
+##                    value2 = int(self._getFactor())
                 
                 if currenTokenValue == '+':
                     node = MyNode(currenTokenValue, value1, value2)
@@ -135,6 +142,9 @@ class MyParser:
 
                 elif len(self._tokens) == 1:
 
+                    if not self._tokens[0].getValue().isdigit():
+                        raise SyntaxError("Invalid expression.")
+
                     if currenTokenValue == '*':
                         node = MyNode(currenTokenValue, self._tokens[0].getValue())
                         self._tokens.pop(0)
@@ -150,8 +160,19 @@ class MyParser:
                         return eva.getResult()
                  
                 else:
-                    value1 = int(self._getFactor())
-                    value2 = int(self._getFactor())
+
+                    if self._tokens[0].getValue().isdigit() or self._tokens[0].getValue() == '(':
+                        value1 = int(self._getFactor())
+                        value2 = int(self._getFactor())
+                        
+                    else:
+                        raise SyntaxError("Invalid expression.")
+
+##                    if not self._tokens[0].getValue().isdigit():
+##                        raise SyntaxError("Invalid expression.")
+##                    
+##                    value1 = int(self._getFactor())
+##                    value2 = int(self._getFactor())
 
                 if currenTokenValue == '*':
                     node = MyNode(currenTokenValue, value1, value2)
