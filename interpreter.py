@@ -14,7 +14,7 @@
 # Evaluator
 #
 # Documentation: Comments, docstring, preconditions, public interfaces (classes)
-# Validations, and error handling
+# Validations, and handling exceptions
 # Testing (doctest, unittest, assertions)
 
 
@@ -24,7 +24,6 @@
 
 from myTokenizer import MyTokenizer
 from myParser import MyParser
-#import sys
 #from termcolor import colored
 
 def main():
@@ -49,32 +48,16 @@ def main():
     while flag:
 
         try:
-            # Prompt user for inserting an expression
+            # Prompt the user for inserting an expression
             userInput = input(">>> ")
 
         except IOError:
-            #print("Could not perform calculations on an empty input.")
             break
-
-##        except ValueError:
-##            break
-##
-##        except ValueError as error:
-##            print("Error: ", str(error))
-##
-##        except SyntaxError as error:
-##            print("Error: ", str(error))
-##
-##        except ZeroDivisionError as error:
-##            print("Error: ", str(error))
-
-        except Exception as exceptObj:
-            print("Error:", str(exceptObj))
 
         if not userInput:
             continue
 
-        # Checking the input
+        # Check the input
         if userInput.upper() != 'Q':
 
             try:
@@ -85,9 +68,6 @@ def main():
                 result = psr.getResult()
                 print(result)
 
-            #except ValueError:
-                #break
-
             except ValueError as error:
                 print("Error: ", str(error))
                 continue
@@ -96,30 +76,17 @@ def main():
                 print("Error: ", str(error))
                 continue
 
-            #except IndexError as error:
-                #print("Error: ", str(error))
-                #continue
-
-##            except Exception as exceptObj:
-##                print("Error:", str(exceptObj))
-##                continue
             except ZeroDivisionError as error:
                 print("Error: ", str(error))
 
             except Exception:
-                print("Something went wrong.")
+                print("Something went wrong.") #Change for 'Invalid expression.' when done with tests.
                 continue
 
-##            # Process input
-##            tk = MyTokenizer(userInput)
-##            tokens = tk.getListOfTokens()
-##            psr = MyParser(tokens)
-##            result = psr.getResult()
-##            print(result)
-
         else:
-
+            
             # Helper function?
+            # Confirm the will of ending the program or not
             if userInput.upper() == 'Q':
                 userInputExit = input("Are you sure you want to quit the program? Y/N: ")
 
@@ -129,69 +96,11 @@ def main():
                 else:
                     print("")
                     print("Welcome back!")
-                    
 
-##    flag = True
-##
-##    while flag:
-##
-##        try:
-##            # Prompt user for inserting an expression
-##            userInput = input(">>> ")
-##
-##            # Checking the input
-##            if userInput.upper() != 'Q':
-##
-##                # Process input
-##                tk = MyTokenizer(userInput)
-##                tokens = tk.getListOfTokens()
-##                psr = MyParser(tokens)
-##                result = psr.getResult()
-##                print(result)
-##
-##            else:
-##
-##                # Helper function?
-##                if userInput.upper() == 'Q':
-##                    userInputExit = input("Are you sure you want to quit the program? Y/N: ")
-##
-##                    if userInputExit.upper() == 'Y':
-##                        flag = False
-##                        print("The program has exited.")
-##                    else:
-##                        print("")
-##                        print("Welcome back!")
-##                        #userInput = input(">>> ")
-##
-##        except EOFError:
-##            print("Error: Empty input was unexpected.")
-
-
-##    userInput = input(">>> ")
-##
-##    while userInput.upper() != 'Q':
-##            
-##        tk = MyTokenizer(userInput)
-##        tokens = tk.getListOfTokens()
-##        psr = MyParser(tokens)
-##        result = psr.getResult()
-##        print(result)
-##
-##        userInput = input(">>> ")
-##
-##        # Helper function?
-##        if userInput.upper() == 'Q':
-##            userInputExit = input("Are you sure you want to quit the program? Y/N: ")
-##
-##            if userInputExit.upper() == 'Y':
-##                print("The program has exited.")
-##            else:
-##                print("")
-##                print("Welcome back!")
-##                userInput = input(">>> ")
-                
-
+                                    
+# run this file
 if __name__ == '__main__':
 
+    # call main function
     main()
 
