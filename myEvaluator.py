@@ -61,13 +61,10 @@ class MyEvaluator:
                 self._result = math.trunc(math.pow(int(self._node.getLeftOperand()), 2))
                 
             else:
-                #self._result = (int(self._node.getLeftOperand()) / int(self._node.getLeftOperand()))
-                if int(self._node.getLeftOperand()) == 0:
-                    raise ZeroDivisionError("Zero division error ocurred.")
-                    #self._result = (int(self._node.getLeftOperand()) / int(self._node.getLeftOperand()))
-                else:
-                    #raise ZeroDivisionError("Zero division error ocurred.")
+                if int(self._node.getLeftOperand()) != 0:
                     self._result = (int(self._node.getLeftOperand()) / int(self._node.getLeftOperand()))
+                else:
+                    raise ZeroDivisionError("Zero division error ocurred.")
 
         else:
 
