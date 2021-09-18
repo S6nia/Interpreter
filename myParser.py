@@ -69,6 +69,9 @@ class MyParser:
                     raise SyntaxError("Unexpected end.")
 
                 elif len(self._tokens) == 1:
+
+                    if not self._tokens[0].getValue().isdigit():
+                        raise SyntaxError("Invalid expression.")
                     
                     if currenTokenValue == '+':
                         #refactor
@@ -86,8 +89,22 @@ class MyParser:
                         return eva.getResult()
                     
                 else:
+
+                    if not self._tokens[0].getValue().isdigit():
+                        raise SyntaxError("Invalid expression.")
+
                     value1 = int(self._getFactor())
                     value2 = int(self._getFactor())
+
+##                    if self._tokens[0].getValue().isdigit():
+##                        print(self._tokens.getValue())
+##                        value1 = int(self._getFactor())
+##                        value2 = int(self._getFactor())
+##                    else:
+##                        raise SyntaxError("Invalid expression.")
+
+                    #value1 = int(self._getFactor())
+                    #value2 = int(self._getFactor())
                 
                 if currenTokenValue == '+':
                     node = MyNode(currenTokenValue, value1, value2)
@@ -133,7 +150,10 @@ class MyParser:
             if  currenTokenValue == '*' or currenTokenValue == '/':
                 self._tokens.pop(0)
 
-                if len(self._tokens) == 1:
+                if len(self._tokens) == 0:
+                    raise SyntaxError("Unexpected end.")
+
+                elif len(self._tokens) == 1:
 
                     if currenTokenValue == '*':
                         node = MyNode(currenTokenValue, self._tokens[0].getValue())
@@ -178,25 +198,25 @@ class MyParser:
         '''(MyParser) -> int'''
 
 
-        token = self._tokens.pop(0)
-        tokenValue = token.getValue()
-
-        if tokenValue == '(':
-            result = self._getExpression()
-            if len(self._tokens)!= 0:
-                self._tokens.pop(0)
-            else:
-                raise SyntaxError("A right parenthesis ')' was expected.")
-            
-        elif tokenValue.isdigit():
-            result = tokenValue
-
-        else:
-            if not tokenValue.isdigit():
-                raise SyntaxError("Unexpected operator: " + "'" + str(tokenValue) + "'" \
-                                  + ". A digit is expected.")
-
-        return result
+##        token = self._tokens.pop(0)
+##        tokenValue = token.getValue()
+##
+##        if tokenValue == '(':
+##            result = self._getExpression()
+##            if len(self._tokens)!= 0:
+##                self._tokens.pop(0)
+##            else:
+##                raise SyntaxError("A right parenthesis ')' was expected.")
+##            
+##        elif tokenValue.isdigit():
+##            result = tokenValue
+##
+##        else:
+##            if not tokenValue.isdigit():
+##                raise SyntaxError("Unexpected operator: " + "'" + str(tokenValue) + "'" \
+##                                  + ". A digit is expected.")
+##
+##        return result
 
 
 ##        try:
@@ -240,17 +260,17 @@ class MyParser:
 ##        return result
 
 
-##        token = self._tokens.pop(0)
-##        tokenValue = token.getValue()
-##
-##        if tokenValue == '(':
-##            result = self._getExpression()
-##            self._tokens.pop(0)
-##            
-##        else:
-##            result = tokenValue
-##
-##        return result
+        token = self._tokens.pop(0)
+        tokenValue = token.getValue()
+
+        if tokenValue == '(':
+            result = self._getExpression()
+            self._tokens.pop(0)
+            
+        else:
+            result = tokenValue
+
+        return result
     
  
     # Docstring!

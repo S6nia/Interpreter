@@ -56,17 +56,17 @@ def main():
             #print("Could not perform calculations on an empty input.")
             break
 
-        #except ValueError:
-            #break
-
-        except ValueError as error:
-            print("Error: ", str(error))
-
-        except SyntaxError as error:
-            print("Error: ", str(error))
-
-        except ZeroDivisionError as error:
-            print("Error: ", str(error))
+##        except ValueError:
+##            break
+##
+##        except ValueError as error:
+##            print("Error: ", str(error))
+##
+##        except SyntaxError as error:
+##            print("Error: ", str(error))
+##
+##        except ZeroDivisionError as error:
+##            print("Error: ", str(error))
 
         except Exception as exceptObj:
             print("Error:", str(exceptObj))
@@ -90,6 +90,24 @@ def main():
 
             except ValueError as error:
                 print("Error: ", str(error))
+                continue
+
+            except SyntaxError as error:
+                print("Error: ", str(error))
+                continue
+
+            #except IndexError as error:
+                #print("Error: ", str(error))
+                #continue
+
+##            except Exception as exceptObj:
+##                print("Error:", str(exceptObj))
+##                continue
+            except ZeroDivisionError as error:
+                print("Error: ", str(error))
+
+            except Exception:
+                print("Something went wrong.")
                 continue
 
 ##            # Process input
