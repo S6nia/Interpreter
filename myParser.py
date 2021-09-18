@@ -65,7 +65,10 @@ class MyParser:
             if  currenTokenValue == '+' or currenTokenValue == '-':
                 self._tokens.pop(0)
 
-                if len(self._tokens) == 1:
+                if len(self._tokens) == 0:
+                    raise SyntaxError("Unexpected end.")
+
+                elif len(self._tokens) == 1:
                     
                     if currenTokenValue == '+':
                         #refactor
@@ -101,12 +104,15 @@ class MyParser:
             elif currenTokenValue == '*' or currenTokenValue == '/':
                 result = self._getTerm()
 
-            elif currenTokenValue.isdigit():
-                raise SyntaxError("Unexpected digit: " + "'" + str(currenTokenValue) + "'" \
-                                  + ". An operator is expected.")
-            
-            elif currenTokenValue == '(' or currenTokenValue == ')':
-                raise SyntaxError("Unexpected parenthesis: " + "'" + str(currenTokenValue) + "'")
+##            elif currenTokenValue.isdigit():
+##                raise SyntaxError("Unexpected digit: " + "'" + str(currenTokenValue) + "'" \
+##                                  + ". An operator is expected.")
+##            
+##            elif currenTokenValue == '(' or currenTokenValue == ')':
+##                raise SyntaxError("Unexpected parenthesis: " + "'" + str(currenTokenValue) + "'")
+
+##            elif currenTokenValue == '(' or currenTokenValue.isdigit(): 
+##                result = self._getFactor()
             
             else:
                 done = True
@@ -159,7 +165,7 @@ class MyParser:
                     eva = MyEvaluator(node)
                     result =  eva.getResult()
 
-            elif currenTokenValue == '(' or currenTokenValue.isdigit(): 
+            elif currenTokenValue == '(' or currenTokenValue.isdigit(): # .isdigit?
                 result = self._getFactor()
 
             else:
