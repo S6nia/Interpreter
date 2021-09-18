@@ -95,16 +95,6 @@ class MyParser:
 
                     value1 = int(self._getFactor())
                     value2 = int(self._getFactor())
-
-##                    if self._tokens[0].getValue().isdigit():
-##                        print(self._tokens.getValue())
-##                        value1 = int(self._getFactor())
-##                        value2 = int(self._getFactor())
-##                    else:
-##                        raise SyntaxError("Invalid expression.")
-
-                    #value1 = int(self._getFactor())
-                    #value2 = int(self._getFactor())
                 
                 if currenTokenValue == '+':
                     node = MyNode(currenTokenValue, value1, value2)
@@ -120,16 +110,6 @@ class MyParser:
 
             elif currenTokenValue == '*' or currenTokenValue == '/':
                 result = self._getTerm()
-
-##            elif currenTokenValue.isdigit():
-##                raise SyntaxError("Unexpected digit: " + "'" + str(currenTokenValue) + "'" \
-##                                  + ". An operator is expected.")
-##            
-##            elif currenTokenValue == '(' or currenTokenValue == ')':
-##                raise SyntaxError("Unexpected parenthesis: " + "'" + str(currenTokenValue) + "'")
-
-##            elif currenTokenValue == '(' or currenTokenValue.isdigit(): 
-##                result = self._getFactor()
             
             else:
                 done = True
@@ -196,69 +176,6 @@ class MyParser:
 
     def _getFactor(self):
         '''(MyParser) -> int'''
-
-
-##        token = self._tokens.pop(0)
-##        tokenValue = token.getValue()
-##
-##        if tokenValue == '(':
-##            result = self._getExpression()
-##            if len(self._tokens)!= 0:
-##                self._tokens.pop(0)
-##            else:
-##                raise SyntaxError("A right parenthesis ')' was expected.")
-##            
-##        elif tokenValue.isdigit():
-##            result = tokenValue
-##
-##        else:
-##            if not tokenValue.isdigit():
-##                raise SyntaxError("Unexpected operator: " + "'" + str(tokenValue) + "'" \
-##                                  + ". A digit is expected.")
-##
-##        return result
-
-
-##        try:
-##            token = self._tokens.pop(0)
-##            tokenValue = token.getValue()
-##
-##            if tokenValue == '(':
-##                result = self._getExpression()
-##                self._tokens.pop(0)
-##            
-##            else:
-##                result = tokenValue
-##
-##            return result
-##
-##        except ValueError:
-##            print("Something went wrong.")
-
-
-##        token = self._tokens.pop(0)
-##        tokenValue = token.getValue()
-##
-##        if tokenValue == '(':
-##            result = self._getExpression()
-##            if len(self._tokens)!= 0:
-##                self._tokens.pop(0)
-##            else:
-##                raise SyntaxError("A right parenthesis ')' was expected.")
-##            
-##        elif tokenValue.isdigit():
-##            result = tokenValue
-##
-##        else:
-##            if not tokenValue.isdigit():
-##                raise SyntaxError("Unexpected operator: " + "'" + str(tokenValue) + "'" \
-##                                  + ". A digit is expected.")
-##            else:
-##                raise SyntaxError("Unexpected digit: " + "'" + str(tokenValue) + "'" \
-##                                  + ". An operator is expected.")
-##
-##        return result
-
 
         token = self._tokens.pop(0)
         tokenValue = token.getValue()
