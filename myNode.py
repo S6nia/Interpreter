@@ -16,13 +16,13 @@ class MyNode:
 
         Initializes the instance variables of node object, given the operator, leftOpd, rightOpd.
 
-        >>> node = MyNode('+', '1' , '2')
+        >>> node = MyNode('+', 1 , 2)
         >>> node.getOperator()
         '+'
         >>> node.getLeftOperand()
-        '1'
+        1
         >>> node.getRightOperand()
-        '2'
+        2
         '''
 
         self._operator = operator
@@ -35,7 +35,7 @@ class MyNode:
 
         Return a string representation of the node.
 
-        >>> node = MyNode('+', '1', '2')
+        >>> node = MyNode('+', 1, 2)
         >>> str(node)
         'Node {Operator: +, Left value: 1, Right value: 2}'
         '''
@@ -57,7 +57,7 @@ class MyNode:
 
         Return the value of the node (operator).
 
-        >>> node = MyNode('+', '1', '2')
+        >>> node = MyNode('+', 1, 2)
         >>> node.getOperator()
         '+'
         '''
@@ -70,9 +70,9 @@ class MyNode:
 
         Return the value of the left leaf (left operand).
 
-        >>> node = MyNode('+', '1', '2')
+        >>> node = MyNode('+', 1, 2)
         >>> node.getLeftOperand()
-        '1'
+        1
         '''
         
         return self._leftOpd
@@ -83,9 +83,9 @@ class MyNode:
 
         Return the value of the right leaf (right operand).
 
-        >>> node = MyNode('+', '1', '2')
+        >>> node = MyNode('+', 1, 2)
         >>> node.getRightOperand()
-        '2'
+        2
         '''
         
         return self._rightOpd
