@@ -1,7 +1,7 @@
 # Name: Sonia Gonçalves
-# Program: IT MSc
-# ST ID: 
-# Date: 18 09 21
+# Program: MSc IT
+# ST ID: 13106604
+# Date: September 2021
 
 
 ##
@@ -10,6 +10,7 @@
 
 import unittest
 from myToken import MyToken
+
 
 class TestMyToken(unittest.TestCase):
     '''Test class for MyToken class.'''
