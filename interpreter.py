@@ -1,21 +1,7 @@
 # Name: Sonia Gonçalves
-# Program: IT MSc
-# ST ID: 
-# Date: 19 08 21
-
-
-# Code * Create * Write
-#   
-# Main
-# Token
-# Tokenizer
-# Node
-# Parser
-# Evaluator
-#
-# Documentation: Comments, docstring, preconditions, public interfaces (classes)
-# Validations, and handling exceptions
-# Testing (doctest, unittest, assertions)
+# Program: MSc IT
+# ST ID: 13106604
+# Date: September 2021
 
 
 ##
@@ -25,6 +11,7 @@
 from myTokenizer import MyTokenizer
 from myParser import MyParser
 #from termcolor import colored
+
 
 def main():
     '''
@@ -80,7 +67,7 @@ def main():
                 print("Error: ", str(error))
 
             except Exception:
-                print("Something went wrong.") #Change for 'Invalid expression.' when done with tests.
+                print("Error: Invalid expression.")
                 continue
 
         else:
