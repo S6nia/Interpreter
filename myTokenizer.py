@@ -1,7 +1,7 @@
 # Name: Sonia Gonçalves
-# Program: IT MSc
-# ST ID: 
-# Date: 19 08 21
+# Program: MSc IT
+# ST ID: 13106604
+# Date: September 2021
 
 
 ##
@@ -15,9 +15,8 @@ INT, PLUS, MINUS, MULT, DIV, LPARENT, RPARENT = (
 )
 
 class MyTokenizer:
-    '''A tokenizer.'''
+    '''A MyTokenizer.'''
 
-    # Docstring?
     def __init__(self, userInput):
         '''(MyTokenizer, str) -> NoneType'''
 
@@ -45,17 +44,18 @@ class MyTokenizer:
         return '\'' + self._input + '\' -> Tokenizer -> ' + str(lst)
     
 
-    # Docstring?
     def _creaTokens(self):
         '''(Tokenizer) -> NoneType'''
 
         for self._pos in range(len(self._input)):
     
             self._currentChar = self._input[self._pos]
-            
-            if self._currentChar.isspace():
-               continue # this statement returns the control to the beginning of the while loop :) 
 
+            # If the current char is a white space, ignore and move to the next one.
+            if self._currentChar.isspace():
+               continue # this statement returns the control to the beginning of the for loop :) 
+
+            # Else see if it is a valid token (and its type), or not.
             else:
 
                 if self._currentChar == '+':
@@ -84,6 +84,9 @@ class MyTokenizer:
 
                 elif self._currentChar.isdigit():
 
+                    # Check if it is a single or a multi-digit number
+                    # If the last char is not a digit, then we have a single-digit number,
+                    # otherwise, we have a multi-digit  number.
                     if not self._input[self._pos - 1].isdigit():
                         tk = MyToken(INT, self._currentChar, self._pos)
                         self._output.append(tk)
@@ -95,11 +98,9 @@ class MyTokenizer:
                 else:
                     # needs to be improved based on the info attached to the char.
                     # to give more info to the user.
-                    #print("Invalid character in the position: ", self._pos)
                     raise ValueError("Invalid value in the position " + str(self._pos) \
                                      + ".\nExpected values: +, -, *, /, (, ), and digits.")
                                                 
-
 
     def getListOfTokens(self):
         '''(Tokenizer) -> list of Tokens
