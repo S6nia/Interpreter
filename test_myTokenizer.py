@@ -1,7 +1,7 @@
 # Name: Sonia Gonçalves
-# Program: IT MSc
-# ST ID: 
-# Date: 19 09 21
+# Program: MSc IT
+# ST ID: 13106604
+# Date: September 2021
 
 
 ##
@@ -11,9 +11,9 @@
 import unittest
 from myTokenizer import MyTokenizer
 
+
 class TestMyTokenizer(unittest.TestCase):
     '''Test class for MyTokenizer class.'''
-    
 
     def test_getListOfTokens(self):
 
@@ -34,7 +34,8 @@ class TestMyTokenizer(unittest.TestCase):
         tkz = MyTokenizer('+ 1 2')
         actuaLisTokens = tkz.getListOfTokens()
 
-        expectedLisTokens = tkz._output # private instance variable (should use accessor)
+        # private instance variable (should use accessor, but it is not implemented)
+        expectedLisTokens = tkz._output 
 
         self.assertEqual(actuaLisTokens, expectedLisTokens)
 
