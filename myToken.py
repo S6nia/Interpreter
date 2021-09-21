@@ -1,7 +1,7 @@
 # Name: Sonia Gonçalves
-# Program: IT MSc
-# ST ID: 
-# Date: 18 08 21
+# Program: MSc IT
+# ST ID: 13106604
+# Date: September 2021
 
 
 ##
@@ -13,7 +13,7 @@ INT, PLUS, MINUS, MULT, DIV, LPARENT, RPARENT = (
 )
 
 class MyToken:
-    '''A token.'''
+    '''A MyToken.'''
     
     def __init__(self, desc, value, index):
         '''(MyToken, str, str, int) -> Nonetype
