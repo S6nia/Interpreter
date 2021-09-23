@@ -1,7 +1,7 @@
 # Name: Sonia Gonçalves
-# Program: IT MSc
-# ST ID: 
-# Date: 18 09 21
+# Program: MSc IT
+# ST ID: 13106604
+# Date: September 2021
 
 
 ##
@@ -11,11 +11,51 @@
 import unittest
 from myNode import MyNode
 
+
 class TestMyNode(unittest.TestCase):
     '''Test class for MyNode class.'''
+
+    def test_getOperator_singleOperand(self):
+
+        node = MyNode('+', 1)
+
+        actual = node.getOperator()
+        expected = '+'
+
+        self.assertEqual(actual, expected)
+
+
+    def test_getLeft_singleOperand(self):
+        
+        node = MyNode('+', 1)
+
+        actual = node.getLeftOperand()
+        expected = 1
+
+        self.assertEqual(actual, expected)
+        
+
+    def test_getRightOperand_singleOperand(self):
+        
+        node = MyNode('+', 1)
+
+        actual = node.getRightOperand()
+        expected = None
+
+        self.assertEqual(actual, expected)
+
+
+    def test_str_singleOperand(self):
+         
+        node = MyNode('+', 1)
+
+        actual = str(node)
+        expected = 'Node {Operator: +, Value: 1}'
+
+        self.assertEqual(actual, expected)
     
 
-    def test_getOperator(self):
+    def test_getOperator_withTwOperands(self):
 
         node = MyNode('+', 1, 2)
 
@@ -25,7 +65,7 @@ class TestMyNode(unittest.TestCase):
         self.assertEqual(actual, expected)
 
 
-    def test_getLeftOperand(self):
+    def test_getLeftOperand_withTwOperands(self):
         
         node = MyNode('+', 1, 2)
 
@@ -35,7 +75,7 @@ class TestMyNode(unittest.TestCase):
         self.assertEqual(actual, expected)
         
 
-    def test_getRightOperand(self):
+    def test_getRightOperand_withTwOperands(self):
         
         node = MyNode('+', 1, 2)
 
@@ -45,7 +85,7 @@ class TestMyNode(unittest.TestCase):
         self.assertEqual(actual, expected)
 
 
-    def test_str(self):
+    def test_str_withTwOperands(self):
          
         node = MyNode('+', 1, 2)
 
