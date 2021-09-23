@@ -1,7 +1,7 @@
 # Name: Sonia Gonçalves
-# Program: IT MSc
-# ST ID: 
-# Date: 22 08 21
+# Program: MSc IT
+# ST ID: 13106604
+# Date: September 2021
 
 
 ##
@@ -9,7 +9,7 @@
 #
 
 class MyNode:
-    '''A node.'''
+    '''A MyNode.'''
 
     def __init__(self, operator, leftOpd, rightOpd = None):
         '''(MyNode, str, int, int) -> Nonetype
@@ -46,10 +46,6 @@ class MyNode:
                    + ', Right value: ' + str(self._rightOpd) + '}'
         else:
             return 'Node {Operator: ' + self._operator + ', ' + 'Value: ' + str(self._leftOpd) + '}'
-
-        # Improve this for operations involving only one number
-        #return 'Node {Operator: ' + self._operator + ', ' + 'Left value: ' + str(self._leftOpd) \
-        #      + ', Right value: ' + str(self._rightOpd) + '}'
 
 
     def getOperator(self):
@@ -106,3 +102,4 @@ if __name__ == '__main__':
     node = MyNode('+', 2)
     
     print(node)
+
