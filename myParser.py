@@ -1,7 +1,7 @@
 # Name: Sonia Gonçalves
-# Program: IT MSc
-# ST ID: 
-# Date: 22 08 21
+# Program: MSc IT
+# ST ID: 13106604
+# Date: September 2021
 
 
 ##
@@ -12,20 +12,18 @@ from myNode import MyNode
 from myEvaluator import MyEvaluator
 from myTokenizer import MyTokenizer
 
+
 class MyParser:
     '''A parser.'''
 
-    # Docstring?
     def __init__(self, tokens):
         '''(MyParser, list of tokens) -> NoneType'''
 
         self._tokens = tokens # list of obj of type token
         self._result = 0
         self._nodes = []
-        self._tokensConsummed = [] # I'll leave it for later, if I decide to show the tokens consumed in the str repr.
 
 
-    # Docstring!
     def __str__(self):
         '''(MyParser) -> str
 
@@ -50,9 +48,8 @@ class MyParser:
         return str(self._tokens) + ' -> Parser -> ' + str(lst)
 
 
-    # Docstring?
     # Applying the mutual recursion technique,
-    # following the syntax diagrams for evaluating an expression.
+    # following the syntax diagrams for evaluating an expression: Expression -> Term -> Factor.
     def _getExpression(self):
         '''(MyParser) -> int'''
         
@@ -65,11 +62,16 @@ class MyParser:
             if  currenTokenValue == '+' or currenTokenValue == '-':
                 self._tokens.pop(0)
 
+                # After removing the operator,
+                # if the len of list of tokens is zero, raise an error.
                 if len(self._tokens) == 0:
                     raise SyntaxError("Unexpected end.")
 
+                # If the len of list of tokens is one,
+                # then create a node and an evaluator to evaluate one expression with only one number.
                 elif len(self._tokens) == 1:
 
+                    # If the second token is not a digit, raise an error.
                     if not self._tokens[0].getValue().isdigit():
                         raise SyntaxError("Invalid expression.")
                     
@@ -90,11 +92,14 @@ class MyParser:
                     
                 else:
 
+                    # If the len of the list of tokens is greater than one,
+                    # determine the values of the operands.
                     if self._tokens[0].getValue().isdigit() or self._tokens[0].getValue() == '(':
                         value1 = int(self._getFactor())
                         value2 = int(self._getFactor())
                         
                     else:
+                        # For other exceptions, raise an error.
                         raise SyntaxError("Invalid expression.")
                 
                 if currenTokenValue == '+':
@@ -118,7 +123,6 @@ class MyParser:
         return result
 
         
-    # Docstring?
     def _getTerm(self):
         '''(MyParser) -> int'''
 
@@ -131,11 +135,16 @@ class MyParser:
             if  currenTokenValue == '*' or currenTokenValue == '/':
                 self._tokens.pop(0)
 
+                # After removing the operator,
+                # if the len of list of tokens is zero, raise an error.
                 if len(self._tokens) == 0:
                     raise SyntaxError("Unexpected end.")
 
+                # If the len of list of tokens is one,
+                # then create a node and an evaluator to evaluate one expression with only one number.
                 elif len(self._tokens) == 1:
 
+                    # If the second token is not a digit, raise an error.
                     if not self._tokens[0].getValue().isdigit():
                         raise SyntaxError("Invalid expression.")
 
@@ -155,11 +164,14 @@ class MyParser:
                  
                 else:
 
+                    # If the len of the list of tokens is greater than one,
+                    # determine the values of the operands.
                     if self._tokens[0].getValue().isdigit() or self._tokens[0].getValue() == '(':
                         value1 = int(self._getFactor())
                         value2 = int(self._getFactor())
                         
                     else:
+                        # For other exceptions, raise an error.
                         raise SyntaxError("Invalid expression.")
 
                 if currenTokenValue == '*':
@@ -174,7 +186,7 @@ class MyParser:
                     eva = MyEvaluator(node)
                     result =  eva.getResult()
 
-            elif currenTokenValue == '(' or currenTokenValue.isdigit(): # .isdigit?
+            elif currenTokenValue == '(' or currenTokenValue.isdigit():
                 result = self._getFactor()
 
             else:
@@ -190,6 +202,7 @@ class MyParser:
         tokenValue = token.getValue()
 
         if tokenValue == '(':
+            
             result = self._getExpression()
             self._tokens.pop(0)
             
@@ -199,7 +212,6 @@ class MyParser:
         return result
     
  
-    # Docstring!
     def getResult(self):
         '''(MyParser) -> int
 
@@ -213,7 +225,7 @@ class MyParser:
         3
         '''
 
-        self._result = self._getExpression() # I could return this directly.
+        self._result = self._getExpression()
         
         return self._result
 
@@ -294,5 +306,3 @@ if __name__ == '__main__':
     print(psr)
 
     
-    
-  
