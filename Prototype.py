@@ -1,7 +1,7 @@
 # Name: Sonia Gonçalves
-# Program: IT MSc
-# ST ID: 
-# Date: 24 07 21
+# Program: MSc IT
+# ST ID: 13106604
+# Date: September 2021
 
 
 ##
