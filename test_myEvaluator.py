@@ -1,7 +1,7 @@
 # Name: Sonia Gonçalves
-# Program: IT MSc
-# ST ID: 
-# Date: 19 09 21
+# Program: MSc IT
+# ST ID: 13106604
+# Date: September 2021
 
 
 ##
@@ -12,9 +12,9 @@ import unittest
 from myEvaluator import MyEvaluator
 from myNode import MyNode
 
+
 class TestMyEvaluator(unittest.TestCase):
     '''Test class for MyEvaluator class.'''
-
 
     def test_getResult_oneSingleDigitOperand(self):
 
@@ -115,7 +115,6 @@ class TestMyEvaluator(unittest.TestCase):
         self.assertEqual(actualResult, expectedResult)
 
 
-
     def test__performOperation_valueInstanceVariable(self):
 
         node = MyNode('+', 1, 2)
@@ -126,9 +125,6 @@ class TestMyEvaluator(unittest.TestCase):
         expectedResult = eva._result
 
         self.assertNotEqual(actualResult, expectedResult)
-
-
-    # Tests with nested operations
 
 
     def test_str(self):
