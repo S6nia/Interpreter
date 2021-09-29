@@ -1,7 +1,7 @@
 # Name: Sonia Gonçalves
-# Program: IT MSc
-# ST ID: 
-# Date: 22 08 21
+# Program: MSc IT
+# ST ID: 13106604
+# Date: September 2021
 
 
 ##
@@ -11,10 +11,10 @@
 import math
 from myNode import MyNode
 
-class MyEvaluator:
-    '''An evaluator.'''
 
-    # Docstring?
+class MyEvaluator:
+    '''A MyEvaluator.'''
+
     def __init__(self, node):
         '''(MyEvaluator) -> NoneType'''
         
@@ -43,14 +43,13 @@ class MyEvaluator:
                    str(self._result)
         
 
-    # Docstring?
     def _performOperation(self):
         '''(MyEvaluator) -> NoneType'''
 
-        # In this block I need to convert to int because it is not converted in the MyParser class.
+        # Evaluates expressions with only one operand.
         if self._node.getRightOperand() == None:
 
-            # Refactor: helper function
+            # Refactor
             if self._node.getOperator() == '+':
                 self._result = (2 * int(self._node.getLeftOperand()))
 
@@ -65,10 +64,11 @@ class MyEvaluator:
                     self._result = (int(self._node.getLeftOperand()) / int(self._node.getLeftOperand()))
                 else:
                     raise ZeroDivisionError("Zero division error ocurred.")
-
+                
+        # Evaluates expressions with two operands.      
         else:
 
-            # Refactor: helper function
+            # Refactor
             if self._node.getOperator() == '+':
                 self._result = self._node.getLeftOperand() + self._node.getRightOperand()
 
@@ -119,3 +119,4 @@ if __name__ == '__main__':
     print(result)
 
     print(eva)
+
