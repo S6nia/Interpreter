@@ -14,7 +14,7 @@ from myTokenizer import MyTokenizer
 
 
 class MyParser:
-    '''A parser.'''
+    '''A MyParser.'''
 
     def __init__(self, tokens):
         '''(MyParser, list of tokens) -> NoneType'''
