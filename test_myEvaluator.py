@@ -16,7 +16,7 @@ from myNode import MyNode
 class TestMyEvaluator(unittest.TestCase):
     '''Test class for MyEvaluator class.'''
 
-    def test_getResult_oneSingleDigitOperand(self):
+    def test_getResult_oneSingleDigitOperand_Addition(self):
 
         node = MyNode('+', 1)
         eva = MyEvaluator(node)
@@ -27,7 +27,7 @@ class TestMyEvaluator(unittest.TestCase):
         self.assertEqual(actualResult, expectedResult)
 
 
-    def test_getResult_twoSingleDigitOperands(self):
+    def test_getResult_twoSingleDigitOperands_Addition(self):
 
         node = MyNode('+', 1, 2)
         eva = MyEvaluator(node)
@@ -38,7 +38,7 @@ class TestMyEvaluator(unittest.TestCase):
         self.assertEqual(actualResult, expectedResult)
     
 
-    def test_getResult_oneMultiDigitOperand(self):
+    def test_getResult_oneMultiDigitOperand_Addition(self):
 
         node = MyNode('+', 11)
         eva = MyEvaluator(node)
@@ -49,13 +49,57 @@ class TestMyEvaluator(unittest.TestCase):
         self.assertEqual(actualResult, expectedResult)
 
 
-    def test_getResult_twoMultiDigitOperands(self):
+    def test_getResult_twoMultiDigitOperands_Addition(self):
 
         node = MyNode('+', 11, 22)
         eva = MyEvaluator(node)
         actualResult = eva.getResult()
 
         expectedResult = 33
+        
+        self.assertEqual(actualResult, expectedResult)
+
+
+    def test_getResult_oneSingleDigitOperand_Subtr(self):
+
+        node = MyNode('-', 1)
+        eva = MyEvaluator(node)
+        actualResult = eva.getResult()
+
+        expectedResult = 0
+        
+        self.assertEqual(actualResult, expectedResult)
+
+
+    def test_getResult_twoSingleDigitOperands_Subtr(self):
+
+        node = MyNode('-', 2, 1)
+        eva = MyEvaluator(node)
+        actualResult = eva.getResult()
+
+        expectedResult = 1
+        
+        self.assertEqual(actualResult, expectedResult)
+    
+
+    def test_getResult_oneMultiDigitOperand_Subtr(self):
+
+        node = MyNode('-', 11)
+        eva = MyEvaluator(node)
+        actualResult = eva.getResult()
+
+        expectedResult = 0
+        
+        self.assertEqual(actualResult, expectedResult)
+
+
+    def test_getResult_twoMultiDigitOperands_Subtr(self):
+
+        node = MyNode('-', 22, 11)
+        eva = MyEvaluator(node)
+        actualResult = eva.getResult()
+
+        expectedResult = 11
         
         self.assertEqual(actualResult, expectedResult)
 
@@ -103,6 +147,50 @@ class TestMyEvaluator(unittest.TestCase):
         
         self.assertEqual(actualResult, expectedResult)
 
+
+    def test_getResult_oneSingleDigitOperand_Div(self):
+
+        node = MyNode('/', 1)
+        eva = MyEvaluator(node)
+        actualResult = eva.getResult()
+
+        expectedResult = 1
+        
+        self.assertEqual(actualResult, expectedResult)
+
+
+    def test_getResult_twoSingleDigitOperands_Div(self):
+
+        node = MyNode('/', 2, 1)
+        eva = MyEvaluator(node)
+        actualResult = eva.getResult()
+
+        expectedResult = 2
+        
+        self.assertEqual(actualResult, expectedResult)
+    
+
+    def test_getResult_oneMultiDigitOperand_Div(self):
+
+        node = MyNode('/', 11)
+        eva = MyEvaluator(node)
+        actualResult = eva.getResult()
+
+        expectedResult = 1
+        
+        self.assertEqual(actualResult, expectedResult)
+
+
+    def test_getResult_twoMultiDigitOperands_Div(self):
+
+        node = MyNode('/', 22, 11)
+        eva = MyEvaluator(node)
+        actualResult = eva.getResult()
+
+        expectedResult = 2
+        
+        self.assertEqual(actualResult, expectedResult)
+    
 
     def test__performOperation(self):
 
